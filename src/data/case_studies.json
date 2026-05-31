@@ -1,0 +1,228 @@
+[
+  {
+    "id": "production_edge_agentic_ai",
+    "title": "Production Edge Agentic AI for Mining Safety",
+    "category": "Agentic AI + Edge AI + Computer Vision",
+    "priority": 1,
+    "homepage_featured": true,
+    "one_liner": "Designed real-time on-device agentic AI systems for safety-critical video analytics on NVIDIA Jetson AGX.",
+    "problem": "Mining and industrial environments require continuous safety monitoring, but manual monitoring is expensive, slow, and error-prone.",
+    "solution": "Built multimodal edge AI pipelines combining perception, reasoning, and action loops for real-time video analytics under strict latency, compute, power, and reliability constraints.",
+    "impact": [
+      "45% reduction in manual monitoring",
+      "30 FPS real-time video analytics",
+      "Improved safety monitoring reliability"
+    ],
+    "technical_details": [
+      "NVIDIA Jetson AGX deployment",
+      "Computer vision pipelines for hazard detection and workflow automation",
+      "Autonomous perception-decision-action loop",
+      "Edge-aware optimization for latency, memory, and throughput",
+      "Client-facing delivery with stakeholder demos and implementation roadmaps"
+    ],
+    "skills": [
+      "Agentic AI",
+      "Computer Vision",
+      "NVIDIA Jetson",
+      "TensorRT",
+      "CUDA",
+      "Edge AI",
+      "MLOps",
+      "Stakeholder Delivery"
+    ],
+    "suggested_visuals": [
+      "System architecture diagram",
+      "Pipeline flow: video stream → perception → reasoning → action",
+      "Before/after metrics cards"
+    ],
+    "recruiter_angle": "Shows rare combination of agentic AI, computer vision, edge deployment, and production constraints."
+  },
+  {
+    "id": "video_rag_continuous_video_search",
+    "title": "Video-RAG for Continuous Video Search",
+    "category": "Multimodal RAG + LLM Systems",
+    "priority": 2,
+    "homepage_featured": true,
+    "one_liner": "Architected retrieval-oriented video understanding pipelines for natural-language search over live and long-horizon video streams.",
+    "problem": "Long video streams are difficult to search, reason over, and summarize using traditional indexing approaches.",
+    "solution": "Built a Video-RAG pipeline using compressed spatio-temporal embeddings, CLIP/VLM-derived representations, semantic text embeddings, multimodal indexing, and LLM reasoning.",
+    "impact": [
+      "Sub-second search latency over multi-day indexed video",
+      "Contextual querying and decision support over live video streams",
+      "Improved explainability through retrieval-backed reasoning"
+    ],
+    "technical_details": [
+      "Compressed spatio-temporal embeddings",
+      "Multimodal segment construction",
+      "Bi-encoder candidate generation",
+      "Cross-encoder refinement",
+      "Confidence-weighted multimodal fusion",
+      "LLM-driven contextual reasoning",
+      "TensorRT / FP16 optimization on Jetson AGX Orin"
+    ],
+    "skills": [
+      "Video-RAG",
+      "Multimodal Retrieval",
+      "CLIP",
+      "VLMs",
+      "LLMs",
+      "TensorRT",
+      "Jetson AGX Orin",
+      "Vector Search"
+    ],
+    "suggested_visuals": [
+      "Retrieval architecture",
+      "Search demo screenshots",
+      "Ranking/fusion diagram"
+    ],
+    "recruiter_angle": "Strong differentiator for GenAI, RAG, multimodal AI, and applied research roles."
+  },
+  {
+    "id": "enterprise_ai_sprint_planning",
+    "title": "Enterprise AI for Sprint Planning and Resource Allocation",
+    "category": "Agentic AI + Enterprise Workflow Automation",
+    "priority": 3,
+    "homepage_featured": true,
+    "one_liner": "Developed an agentic planning workflow to support prioritization, sequencing, trade-off analysis, and resource allocation.",
+    "problem": "Product, engineering, and operations teams need better visibility into dependencies, constraints, and competing priorities during planning.",
+    "solution": "Formalized product definitions, feature requirements, sprint goals, and workflow logic into structured context for AI-assisted decision support.",
+    "impact": [
+      "Improved visibility into dependencies and constraints",
+      "Supported AI-assisted prioritization and sequencing",
+      "Framed as a human-AI collaboration system for workflow redesign"
+    ],
+    "technical_details": [
+      "Agentic planning workflow",
+      "Structured Notion-based context",
+      "Feature and sprint-goal reasoning",
+      "Trade-off surfacing",
+      "Resource allocation support",
+      "Research framing around organizational AI adoption"
+    ],
+    "skills": [
+      "Agentic AI",
+      "Enterprise AI",
+      "Workflow Automation",
+      "Human-AI Collaboration",
+      "Product Ops",
+      "Decision Support"
+    ],
+    "suggested_visuals": [
+      "Planning workflow diagram",
+      "Example sprint prioritization matrix",
+      "Human-in-the-loop decision flow"
+    ],
+    "recruiter_angle": "Best case study for AI consulting, strategy, forward-deployed AI, and product-facing AI roles."
+  },
+  {
+    "id": "inference_optimization_mlops",
+    "title": "High-Performance Inference and MLOps for Real-Time AI",
+    "category": "ML Systems + Inference Optimization",
+    "priority": 4,
+    "homepage_featured": true,
+    "one_liner": "Built GPU-accelerated inference and deployment pipelines that improved throughput, latency, reproducibility, and validation.",
+    "problem": "Production AI workloads need predictable latency, efficient memory usage, reproducible deployment, and continuous validation.",
+    "solution": "Engineered real-time and batch inference pipelines using ONNX, TensorRT, CUDA, GStreamer, MLflow, Docker, AWS, CI/CD, and edge-device runners.",
+    "impact": [
+      "2x throughput improvement",
+      "60% latency reduction",
+      "50% IPC latency reduction",
+      "30% faster deployments"
+    ],
+    "technical_details": [
+      "TensorRT and ONNX runtime optimization",
+      "CUDA-aware scheduling",
+      "GStreamer pipelines with GPU-accelerated decode/encode",
+      "MLflow deployment tracking",
+      "Dockerized CI/CD workflows",
+      "Hardware-in-the-loop validation"
+    ],
+    "skills": [
+      "TensorRT",
+      "ONNX",
+      "CUDA",
+      "GStreamer",
+      "MLflow",
+      "Docker",
+      "AWS",
+      "CI/CD",
+      "MLOps"
+    ],
+    "suggested_visuals": [
+      "Latency before/after chart",
+      "Deployment pipeline diagram",
+      "Edge-to-cloud architecture"
+    ],
+    "recruiter_angle": "Targets ML systems, infra, edge AI, and performance engineering recruiters."
+  },
+  {
+    "id": "real_time_defect_detection",
+    "title": "Real-Time Infrastructure Defect Detection",
+    "category": "Computer Vision + Applied ML",
+    "priority": 5,
+    "homepage_featured": false,
+    "one_liner": "Built real-time anomaly detection and inspection systems integrating live drone feeds, ML predictions, and analytics dashboards.",
+    "problem": "Infrastructure inspection workflows are slow and costly when dependent on manual review.",
+    "solution": "Developed ensemble ML models and real-time analytics pipelines for structural defect classification.",
+    "impact": [
+      "90% accuracy",
+      "4x faster processing",
+      "30% lower inspection costs",
+      "25% faster stakeholder decision-making"
+    ],
+    "technical_details": [
+      "Knowledge distillation",
+      "Ensemble ML",
+      "Live video feed integration",
+      "Analytics dashboards",
+      "Report automation"
+    ],
+    "skills": [
+      "Anomaly Detection",
+      "Computer Vision",
+      "XGBoost",
+      "LightGBM",
+      "Dashboards",
+      "Real-Time ML"
+    ],
+    "suggested_visuals": [
+      "Detection pipeline",
+      "Dashboard mockup",
+      "Accuracy/latency metrics"
+    ],
+    "recruiter_angle": "Proves applied ML product delivery before JSquared."
+  },
+  {
+    "id": "llm_pr_review_assistant",
+    "title": "LLM-Based Pull Request Review Assistant",
+    "category": "LLM Automation + Developer Productivity",
+    "priority": 6,
+    "homepage_featured": false,
+    "one_liner": "Built an LLM-based pull request review system to automate code analysis and improve engineering efficiency.",
+    "problem": "Code review can be slow, inconsistent, and difficult to scale across fast-moving AI development teams.",
+    "solution": "Implemented an LLM-driven review workflow to analyze PRs, surface issues, and support engineering quality.",
+    "impact": [
+      "Improved engineering efficiency",
+      "Supported faster applied AI development workflows"
+    ],
+    "technical_details": [
+      "LLM prompt workflow",
+      "Repository/PR context parsing",
+      "Automated review comments",
+      "Developer workflow integration"
+    ],
+    "skills": [
+      "LLMs",
+      "Developer Tools",
+      "Automation",
+      "GitHub",
+      "Prompt Engineering"
+    ],
+    "suggested_visuals": [
+      "PR review flow",
+      "Example review output",
+      "Developer productivity diagram"
+    ],
+    "recruiter_angle": "Good supporting project for AI software engineer and internal tools roles."
+  }
+]

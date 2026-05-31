@@ -1,0 +1,265 @@
+{
+  "metadata": {
+    "name": "Preet Viradiya",
+    "portfolio_positioning": "AI Systems Engineer specializing in Agentic AI, Edge/Video AI, RAG, ML infrastructure, and production inference systems.",
+    "primary_audience": [
+      "AI/ML recruiters",
+      "GenAI and Agentic AI hiring managers",
+      "ML systems / inference optimization teams",
+      "Applied AI consulting teams",
+      "Computer vision and edge AI teams",
+      "MLOps / platform engineering teams"
+    ],
+    "last_updated_recommendation": "Update footer/copyright to current year and remove outdated student-only positioning.",
+    "source_basis": [
+      "Current website: https://pinakin7.github.io/",
+      "Uploaded CV and resumes",
+      "Known career context from prior conversations"
+    ]
+  },
+  "global_nav": [
+    {
+      "label": "Home",
+      "href": "#home"
+    },
+    {
+      "label": "Experience",
+      "href": "#experience"
+    },
+    {
+      "label": "Case Studies",
+      "href": "#case-studies"
+    },
+    {
+      "label": "Research",
+      "href": "#research"
+    },
+    {
+      "label": "Skills",
+      "href": "#skills"
+    },
+    {
+      "label": "Resume",
+      "href": "#resume"
+    },
+    {
+      "label": "Contact",
+      "href": "#contact"
+    }
+  ],
+  "hero": {
+    "eyebrow": "AI Systems Engineer • Agentic AI • Edge/Video AI • ML Infrastructure",
+    "headline": "I build production-grade AI systems that connect models, infrastructure, and business workflows.",
+    "subheadline": "Machine Learning Engineer focused on agentic AI systems, Video-RAG, real-time edge inference, MLOps, and client-facing AI delivery across safety-critical and enterprise environments.",
+    "cta_primary": "View Case Studies",
+    "cta_secondary": "Get in Touch",
+    "recruiter_pitch": "Open to AI/ML, GenAI, ML Systems, Computer Vision, Edge AI, MLOps, and Applied AI Consulting roles.",
+    "proof_points": [
+      "45% reduction in manual monitoring",
+      "30 FPS real-time video analytics on NVIDIA Jetson AGX",
+      "2x inference throughput improvement",
+      "60% latency reduction",
+      "50% lower data acquisition costs through synthetic data",
+      "30% faster deployment workflows"
+    ]
+  },
+  "about": {
+    "short": "I am a Machine Learning Engineer with a University of Toronto MScAC background, building production AI systems across edge devices, cloud infrastructure, multimodal retrieval, and agentic workflows.",
+    "full": "I work at the intersection of machine learning, systems engineering, and product delivery. My recent work includes real-time agentic AI systems on NVIDIA Jetson AGX, Video-RAG pipelines for live video streams, GPU-optimized inference with ONNX/TensorRT/CUDA/GStreamer, and MLOps workflows using MLflow, Docker, AWS, Git, and CI/CD. I care about systems that are reliable, measurable, maintainable, and useful to real teams—not just prototypes."
+  },
+  "experience": [
+    {
+      "company": "JSquared Technologies",
+      "role": "Machine Learning Research Engineer",
+      "dates": "May 2024 – Present",
+      "theme": "Production AI systems for safety-critical mining and operational workflows",
+      "summary": "Led development and deployment of real-time AI, agentic AI, Video-RAG, and edge inference systems for mining safety and workflow automation.",
+      "highlights": [
+        "Led client-facing AI delivery across product, operations, engineering, and client stakeholders, translating business needs into deployed systems that reduced manual monitoring by 45%.",
+        "Designed on-device multimodal AI systems on NVIDIA Jetson AGX with autonomous perception–decision–action loops running at 30 FPS under strict compute, latency, power, and reliability constraints.",
+        "Architected Video-RAG pipelines using spatio-temporal embeddings, multimodal indexing, and LLM reasoning for contextual search and decision support over live video streams.",
+        "Built real-time and batch inference pipelines using ONNX, TensorRT, CUDA, GStreamer, and NVIDIA Jetson, achieving 2x throughput and 60% latency reduction.",
+        "Automated MLOps workflows with MLflow, AWS EC2, Docker, Git, Jenkins/CI-CD, deployment validation, monitoring, and edge-device runners.",
+        "Developed synthetic data pipelines for rare-event scenarios, reducing data acquisition costs by 50% and accelerating deployment timelines by 25%."
+      ],
+      "tags": [
+        "Agentic AI",
+        "Video-RAG",
+        "Edge AI",
+        "Computer Vision",
+        "TensorRT",
+        "CUDA",
+        "GStreamer",
+        "MLflow",
+        "AWS",
+        "Docker",
+        "MLOps"
+      ]
+    },
+    {
+      "company": "Sapiient Advanced Technologies",
+      "role": "Machine Learning Engineer",
+      "dates": "Aug 2022 – Feb 2023",
+      "theme": "Real-time ML and anomaly detection for infrastructure inspection",
+      "summary": "Built optimized anomaly detection and video-based analytics systems for infrastructure inspection.",
+      "highlights": [
+        "Designed ensemble ML models for real-time classification of structural defects in underwater infrastructure, achieving 90% accuracy and 4x faster processing.",
+        "Built a real-time infrastructure inspection platform integrating live drone feeds, ML predictions, and analytics dashboards, reducing inspection costs by 30%.",
+        "Automated statistical reporting workflows and translated model outputs into stakeholder-facing business insights."
+      ],
+      "tags": [
+        "Anomaly Detection",
+        "Computer Vision",
+        "Real-Time ML",
+        "Dashboards",
+        "XGBoost",
+        "LightGBM"
+      ]
+    },
+    {
+      "company": "TechNomads",
+      "role": "Software Development Engineer",
+      "dates": "Jan 2022 – Jul 2022",
+      "theme": "Backend, cloud, and API engineering",
+      "summary": "Built scalable REST APIs and AWS-based platform features for real-time analytics workflows.",
+      "highlights": [
+        "Built scalable REST APIs for multi-source data integration and real-time analytics workflows, improving throughput by 30%.",
+        "Developed and deployed AWS-based platform features focused on backend reliability, performance, and user engagement.",
+        "Worked cross-functionally with product and engineering teams to ship customer-facing improvements."
+      ],
+      "tags": [
+        "Backend",
+        "REST APIs",
+        "AWS",
+        "Cloud",
+        "Product Engineering"
+      ]
+    }
+  ],
+  "case_studies_order": [
+    "production_edge_agentic_ai",
+    "video_rag_continuous_video_search",
+    "enterprise_ai_sprint_planning",
+    "inference_optimization_mlops",
+    "real_time_defect_detection",
+    "llm_pr_review_assistant"
+  ],
+  "skills": {
+    "ai_ml_genai": [
+      "Machine Learning",
+      "Deep Learning",
+      "LLMs",
+      "RAG",
+      "Agentic AI",
+      "NLP",
+      "Computer Vision",
+      "Anomaly Detection",
+      "Synthetic Data",
+      "Responsible AI",
+      "Prompt Engineering",
+      "Tool Calling"
+    ],
+    "llm_rag_serving": [
+      "LangChain",
+      "LangGraph",
+      "Multimodal Retrieval",
+      "Video-RAG",
+      "LLM-powered Automation",
+      "vLLM",
+      "TensorRT-LLM",
+      "ONNX Runtime",
+      "TensorRT",
+      "CUDA",
+      "Real-Time Inference",
+      "Batch Inference",
+      "Latency Optimization"
+    ],
+    "ml_validation": [
+      "PyTorch",
+      "TensorFlow",
+      "Scikit-learn",
+      "XGBoost",
+      "LightGBM",
+      "Feature Engineering",
+      "Knowledge Distillation",
+      "Model Evaluation",
+      "Drift Monitoring",
+      "Performance Testing",
+      "Bias/Error Analysis"
+    ],
+    "infrastructure": [
+      "MLflow",
+      "CI/CD",
+      "Experiment Tracking",
+      "Model Deployment",
+      "Monitoring",
+      "AWS EC2",
+      "AWS SageMaker",
+      "AWS Bedrock",
+      "SQL",
+      "Spark",
+      "Kafka",
+      "REST APIs",
+      "Docker",
+      "Git",
+      "Linux"
+    ],
+    "systems_edge": [
+      "NVIDIA Jetson",
+      "Hailo",
+      "GStreamer",
+      "FP16",
+      "Quantization",
+      "Edge-device Runners",
+      "Hardware-in-the-loop Validation",
+      "GPU-accelerated Decoding/Encoding"
+    ],
+    "consulting_delivery": [
+      "Stakeholder Management",
+      "Client-Facing Communication",
+      "Requirements Gathering",
+      "Solution Design",
+      "Business Process Analysis",
+      "Agile Delivery",
+      "Product Prototyping",
+      "Technical Documentation",
+      "Executive Communication",
+      "Cross-Functional Execution"
+    ]
+  },
+  "education": [
+    {
+      "institution": "University of Toronto",
+      "degree": "Master of Science in Applied Computing (MScAC), Department of Computer Science",
+      "dates": "Sep 2023 – May 2024",
+      "coursework": [
+        "Neural Networks and Deep Learning",
+        "Advanced Data Systems",
+        "Algorithms for Private Data Analysis",
+        "Statistical Learning Theory",
+        "Natural Language Computation",
+        "Mathematical Finance"
+      ]
+    },
+    {
+      "institution": "Amity University",
+      "degree": "B.Tech in Artificial Intelligence and Machine Learning, Minor in Economics",
+      "dates": "Aug 2019 – Jun 2023",
+      "gpa": "9.68/10.0",
+      "coursework": [
+        "NLP",
+        "Pattern Recognition",
+        "Computer Vision and Image Processing",
+        "Big Data",
+        "Genetic Algorithms"
+      ]
+    }
+  ],
+  "contact": {
+    "email": "viradiyapreet@gmail.com",
+    "github": "https://github.com/pinakin7",
+    "portfolio": "https://pinakin7.github.io/",
+    "linkedin": "https://www.linkedin.com/in/preetviradiya/",
+    "cta": "Interested in AI systems, agentic AI, edge AI, or ML infrastructure roles? Let’s connect."
+  }
+}

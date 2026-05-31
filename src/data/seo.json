@@ -1,0 +1,27 @@
+{
+  "home": {
+    "title": "Preet Viradiya | AI Systems Engineer | Agentic AI, Edge AI, RAG, MLOps",
+    "description": "Machine Learning Engineer building production-grade agentic AI, Video-RAG, edge AI, optimized inference, and MLOps systems.",
+    "keywords": "AI Systems Engineer, Machine Learning Engineer, Agentic AI Engineer, RAG, Video-RAG, Edge AI, MLOps, TensorRT, CUDA, NVIDIA Jetson, LangGraph"
+  },
+  "caseStudies": {
+    "title": "AI/ML Case Studies | Agentic AI, Video-RAG, Edge Inference",
+    "description": "Selected production AI case studies spanning edge agentic AI, multimodal Video-RAG, inference optimization, and enterprise AI workflows.",
+    "keywords": "AI case studies, ML engineering portfolio, Agentic AI, multimodal retrieval, computer vision, ML systems"
+  },
+  "experience": {
+    "title": "Experience | Production AI, ML Systems, Computer Vision, MLOps",
+    "description": "Professional experience across JSquared Technologies, Sapiient Advanced Technologies, and TechNomads.",
+    "keywords": "Machine Learning Engineer experience, AWS, Docker, MLflow, ONNX, TensorRT, GStreamer"
+  },
+  "research": {
+    "title": "Research | Enterprise AI, Human-AI Collaboration, Multimodal Video Retrieval",
+    "description": "Research interests in enterprise AI, human-AI collaboration, workflow redesign, resource allocation, and continuous video retrieval.",
+    "keywords": "Enterprise AI research, human-AI collaboration, workflow redesign, resource allocation, multimodal AI"
+  },
+  "contact": {
+    "title": "Contact Preet Viradiya | AI/ML Engineer",
+    "description": "Contact Preet Viradiya for AI/ML, GenAI, ML systems, edge AI, and applied AI opportunities.",
+    "keywords": "contact AI ML engineer, recruiter, hiring, portfolio"
+  }
+}
