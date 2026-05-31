@@ -1,0 +1,30 @@
+{
+  "created_at": "2026-05-31T13:57:20.600512Z",
+  "files_created": [
+    "README.md",
+    "case_studies.json",
+    "content_inventory.md",
+    "homepage_copy.md",
+    "linkedin_github_copy.md",
+    "portfolio_roadmap.md",
+    "recruiter_personas.yaml",
+    "seo_recruiter_keywords.csv",
+    "site_content.json"
+  ],
+  "recommended_first_publish_sections": [
+    "Hero",
+    "Proof metrics",
+    "Featured case studies",
+    "Professional experience",
+    "Skills by recruiter intent",
+    "Contact + resume CTAs"
+  ],
+  "old_content_to_deprioritize": [
+    "Virtual internships",
+    "Generic certificates",
+    "BTHS as primary project",
+    "AI hand controller as primary project",
+    "Student-only positioning",
+    "2021 footer"
+  ]
+}

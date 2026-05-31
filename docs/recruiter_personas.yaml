@@ -1,0 +1,93 @@
+personas:
+  -
+    role: "AI/ML Engineer"
+    what_they_need_to_see:
+      - "Python"
+      - "PyTorch/TensorFlow"
+      - "ML pipelines"
+      - "deployment"
+      - "monitoring"
+      - "business impact"
+    homepage_evidence:
+      - "JSquared production AI"
+      - "Sapiient anomaly detection"
+      - "MLflow/AWS/Docker"
+      - "45% monitoring reduction"
+    case_studies_to_feature:
+      - "production_edge_agentic_ai"
+      - "real_time_defect_detection"
+      - "inference_optimization_mlops"
+  -
+    role: "GenAI / Agentic AI Engineer"
+    what_they_need_to_see:
+      - "LLMs"
+      - "RAG"
+      - "agent orchestration"
+      - "tool calling"
+      - "LangChain/LangGraph"
+      - "evaluation"
+    homepage_evidence:
+      - "Video-RAG"
+      - "agentic AI systems"
+      - "enterprise sprint planning AI"
+      - "LLM PR review assistant"
+    case_studies_to_feature:
+      - "video_rag_continuous_video_search"
+      - "enterprise_ai_sprint_planning"
+      - "llm_pr_review_assistant"
+  -
+    role: "ML Systems / Inference Optimization Engineer"
+    what_they_need_to_see:
+      - "TensorRT"
+      - "ONNX"
+      - "CUDA"
+      - "latency"
+      - "throughput"
+      - "memory"
+      - "profiling"
+      - "edge/cloud"
+    homepage_evidence:
+      - "2x throughput"
+      - "60% latency reduction"
+      - "50% IPC latency reduction"
+      - "GStreamer"
+      - "Jetson AGX"
+    case_studies_to_feature:
+      - "inference_optimization_mlops"
+      - "production_edge_agentic_ai"
+  -
+    role: "Computer Vision / Edge AI Engineer"
+    what_they_need_to_see:
+      - "video analytics"
+      - "object detection"
+      - "tracking"
+      - "Jetson"
+      - "Hailo"
+      - "real-time constraints"
+    homepage_evidence:
+      - "30 FPS Jetson AGX systems"
+      - "hazard detection"
+      - "person re-ID"
+      - "multi-object tracking"
+      - "rockfall detection"
+    case_studies_to_feature:
+      - "production_edge_agentic_ai"
+      - "video_rag_continuous_video_search"
+      - "real_time_defect_detection"
+  -
+    role: "Forward-Deployed AI / AI Consultant"
+    what_they_need_to_see:
+      - "client-facing delivery"
+      - "requirements gathering"
+      - "solution design"
+      - "roadmaps"
+      - "stakeholder communication"
+      - "business outcomes"
+    homepage_evidence:
+      - "45% manual monitoring reduction"
+      - "enterprise workflow automation"
+      - "stakeholder demos"
+      - "technical documentation"
+    case_studies_to_feature:
+      - "enterprise_ai_sprint_planning"
+      - "production_edge_agentic_ai"
