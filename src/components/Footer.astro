@@ -1,0 +1,47 @@
+---
+import siteContent from '../data/site_content.json';
+
+const { contact, metadata } = siteContent;
+const hasLinkedIn = contact.linkedin?.startsWith('http');
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t" style="border-color: var(--color-line); background-color: var(--color-surface);">
+  <div class="container-page py-10">
+    <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <p class="text-sm font-semibold" style="color: var(--color-ink);">
+          {metadata.name}
+        </p>
+        <p class="mt-1 text-sm" style="color: var(--color-muted);">
+          AI Systems Engineer · Agentic AI · Edge/Video AI · ML Infrastructure
+        </p>
+      </div>
+
+      <ul class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+        <li>
+          <a class="link-accent" href={`mailto:${contact.email}`}>Email</a>
+        </li>
+        <li>
+          <a class="link-accent" href={contact.github} target="_blank" rel="noopener">GitHub</a>
+        </li>
+        {
+          hasLinkedIn && (
+            <li>
+              <a class="link-accent" href={contact.linkedin} target="_blank" rel="noopener">
+                LinkedIn
+              </a>
+            </li>
+          )
+        }
+        <li>
+          <a class="link-accent" href="/contact/">Contact</a>
+        </li>
+      </ul>
+    </div>
+
+    <p class="mt-8 text-xs" style="color: var(--color-muted);">
+      © {year} {metadata.name}. Built with Astro · Deployed on GitHub Pages.
+    </p>
+  </div>
+</footer>
