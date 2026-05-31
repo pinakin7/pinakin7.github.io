@@ -1,0 +1,91 @@
+---
+const links = [
+  { label: 'Home', href: '/' },
+  { label: 'Experience', href: '/experience/' },
+  { label: 'Case Studies', href: '/case-studies/' },
+  { label: 'Research', href: '/research/' },
+  { label: 'Contact', href: '/contact/' },
+];
+
+const current = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === '/' ? current === '/' : current.startsWith(href);
+---
+
+<header
+  class="sticky top-0 z-40 border-b bg-white/85 backdrop-blur"
+  style="border-color: var(--color-line);"
+>
+  <nav class="container-page flex h-16 items-center justify-between" aria-label="Primary">
+    <a
+      href="/"
+      class="text-base font-bold tracking-tight"
+      style="color: var(--color-ink);"
+    >
+      Preet&nbsp;Viradiya
+      <span class="hidden font-normal sm:inline" style="color: var(--color-muted);"
+        >· AI Systems Engineer</span
+      >
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="hidden items-center gap-1 md:flex">
+      {
+        links.map((l) => (
+          <li>
+            <a
+              href={l.href}
+              aria-current={isActive(l.href) ? 'page' : undefined}
+              class="rounded-md px-3 py-2 text-sm font-medium transition-colors"
+              style={
+                isActive(l.href)
+                  ? 'color: var(--color-accent);'
+                  : 'color: var(--color-ink-soft);'
+              }
+            >
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <!-- Mobile toggle (CSS-only via the hidden checkbox) -->
+    <details class="relative md:hidden">
+      <summary
+        class="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-md border"
+        style="border-color: var(--color-line);"
+        aria-label="Toggle menu"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </summary>
+      <ul
+        class="absolute right-0 mt-2 w-52 rounded-xl border bg-white p-2 shadow-lg"
+        style="border-color: var(--color-line);"
+      >
+        {
+          links.map((l) => (
+            <li>
+              <a
+                href={l.href}
+                aria-current={isActive(l.href) ? 'page' : undefined}
+                class="block rounded-md px-3 py-2 text-sm font-medium"
+                style={
+                  isActive(l.href)
+                    ? 'color: var(--color-accent); background-color: var(--color-accent-soft);'
+                    : 'color: var(--color-ink-soft);'
+                }
+              >
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </details>
+  </nav>
+</header>
