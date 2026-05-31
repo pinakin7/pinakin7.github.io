@@ -1,0 +1,70 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  /** Show extended descriptions (research page) vs. brief (home). */
+  detailed?: boolean;
+}
+
+const { detailed = false } = Astro.props;
+
+const themes = [
+  {
+    title: 'Human–AI Collaboration & Workflow Redesign',
+    brief:
+      'How agentic systems augment human decision-making in planning, prioritization, and resource allocation.',
+    detail:
+      'Studying how AI-assisted planning reshapes product and engineering workflows — where humans stay in the loop, how trade-offs are surfaced, and how organizations adopt agentic decision support without losing accountability.',
+    related: { label: 'Enterprise AI for Sprint Planning', id: 'enterprise_ai_sprint_planning' },
+  },
+  {
+    title: 'Continuous & Multimodal Video Retrieval',
+    brief:
+      'Retrieval-oriented video understanding for natural-language search over live and long-horizon streams.',
+    detail:
+      'Exploring compressed spatio-temporal embeddings, multimodal fusion, and retrieval-backed LLM reasoning to make hours of video searchable, explainable, and useful for real-time decision support.',
+    related: { label: 'Video-RAG for Continuous Video Search', id: 'video_rag_continuous_video_search' },
+  },
+  {
+    title: 'Edge AI for Safety-Critical Systems',
+    brief:
+      'Reliable on-device perception–decision–action loops under strict latency, power, and compute limits.',
+    detail:
+      'Investigating how agentic and computer-vision pipelines can run dependably on edge hardware in safety-critical environments, balancing accuracy, latency, energy, and fail-safe behavior.',
+    related: { label: 'Production Edge Agentic AI for Mining Safety', id: 'production_edge_agentic_ai' },
+  },
+  {
+    title: 'Enterprise AI Adoption',
+    brief:
+      'Turning structured organizational context into trustworthy, measurable AI decision support.',
+    detail:
+      'Looking at how enterprises encode goals, constraints, and domain context so AI systems produce decisions that teams can trust, audit, and act on — and how to measure the resulting business impact.',
+    related: { label: 'Enterprise AI for Sprint Planning', id: 'enterprise_ai_sprint_planning' },
+  },
+];
+
+const shown = detailed ? themes : themes.slice(0, 3);
+---
+
+<div class="grid gap-5 sm:grid-cols-2">
+  {
+    shown.map((t) => (
+      <div class="card flex h-full flex-col">
+        <h3 class="text-base font-bold tracking-tight" style="color: var(--color-ink);">
+          {t.title}
+        </h3>
+        <p class="mt-2 flex-1 text-sm leading-relaxed" style="color: var(--color-ink-soft);">
+          {detailed ? t.detail : t.brief}
+        </p>
+        <a
+          href={`/case-studies/${t.related.id}/`}
+          class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold"
+          style="color: var(--color-accent);"
+        >
+          {t.related.label}
+          <Icon name="arrow-right" size={15} />
+        </a>
+      </div>
+    ))
+  }
+</div>
