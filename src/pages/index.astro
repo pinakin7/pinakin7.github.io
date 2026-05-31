@@ -1,0 +1,101 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ProofMetrics from '../components/ProofMetrics.astro';
+import CaseStudyCard from '../components/CaseStudyCard.astro';
+import ExperienceTimeline from '../components/ExperienceTimeline.astro';
+import SkillsGroups from '../components/SkillsGroups.astro';
+import ResearchSection from '../components/ResearchSection.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import Icon from '../components/Icon.astro';
+import siteContent from '../data/site_content.json';
+import seo from '../data/seo.json';
+
+const studies = await getCollection('caseStudies');
+const featured = studies
+  .map((s) => s.data)
+  .filter((s) => s.homepage_featured)
+  .sort((a, b) => a.priority - b.priority);
+---
+
+<BaseLayout
+  title={seo.home.title}
+  description={seo.home.description}
+  keywords={seo.home.keywords}
+  path="/"
+  personSchema={true}
+>
+  <Hero />
+
+  <ProofMetrics />
+
+  <!-- Featured case studies -->
+  <section class="container-page py-16 sm:py-20">
+    <div class="flex items-end justify-between gap-4">
+      <div>
+        <p class="eyebrow">Featured work</p>
+        <h2 class="section-heading mt-2">Selected case studies</h2>
+      </div>
+      <a class="hidden items-center gap-1.5 text-sm font-semibold sm:inline-flex" style="color: var(--color-accent);" href="/case-studies/">
+        View all
+        <Icon name="arrow-right" size={16} />
+      </a>
+    </div>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2">
+      {featured.map((study) => <CaseStudyCard study={study} />)}
+    </div>
+  </section>
+
+  <!-- Experience snapshot -->
+  <section class="border-t" style="border-color: var(--color-line); background-color: var(--color-surface);">
+    <div class="container-page py-16 sm:py-20">
+      <div class="flex items-end justify-between gap-4">
+        <div>
+          <p class="eyebrow">Experience</p>
+          <h2 class="section-heading mt-2">Where I've shipped AI systems</h2>
+        </div>
+        <a class="hidden items-center gap-1.5 text-sm font-semibold sm:inline-flex" style="color: var(--color-accent);" href="/experience/">
+          Full experience
+          <Icon name="arrow-right" size={16} />
+        </a>
+      </div>
+      <div class="mt-8">
+        <ExperienceTimeline experiences={siteContent.experience} compact={true} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills by recruiter intent -->
+  <section class="container-page py-16 sm:py-20">
+    <p class="eyebrow">Skills</p>
+    <h2 class="section-heading mt-2">Grouped by what you're hiring for</h2>
+    <div class="mt-8">
+      <SkillsGroups />
+    </div>
+  </section>
+
+  <!-- Research -->
+  <section class="border-t" style="border-color: var(--color-line); background-color: var(--color-surface);">
+    <div class="container-page py-16 sm:py-20">
+      <div class="flex items-end justify-between gap-4">
+        <div>
+          <p class="eyebrow">Research & writing</p>
+          <h2 class="section-heading mt-2">Where I go deep</h2>
+        </div>
+        <a class="hidden items-center gap-1.5 text-sm font-semibold sm:inline-flex" style="color: var(--color-accent);" href="/research/">
+          More
+          <Icon name="arrow-right" size={16} />
+        </a>
+      </div>
+      <div class="mt-8">
+        <ResearchSection />
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="container-page py-16 sm:py-20">
+    <ContactCTA variant="compact" />
+  </section>
+</BaseLayout>
