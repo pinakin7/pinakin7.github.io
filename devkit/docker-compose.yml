@@ -1,0 +1,37 @@
+# ---------------------------------------------------------------------------
+# DEVELOPMENT-ONLY compose stack.
+#
+# Runs the Astro dev server in a container with live reload. Production does
+# NOT use this — the live site is a static GitHub Pages deploy. The build
+# context is the repo root (..), and this devkit/ folder is ignored by the
+# Astro build, so nothing here ships to prod.
+#
+# Usage (from this folder):
+#   docker compose up            # start dev server -> http://localhost:4321
+#   docker compose up --build    # rebuild image after changing package.json
+#   docker compose down          # stop
+#   docker compose down -v       # stop + drop the node_modules volume (clean install)
+# ---------------------------------------------------------------------------
+services:
+  dev:
+    build:
+      context: ..
+      dockerfile: devkit/Dockerfile
+    container_name: portfolio-dev
+    ports:
+      - "4321:4321"
+    volumes:
+      # Live-edit the source from the host...
+      - ..:/app
+      # ...but keep the container's installed node_modules (don't let the
+      # host's empty/absent node_modules shadow it).
+      - portfolio_node_modules:/app/node_modules
+    environment:
+      # Reliable file watching / HMR inside Docker (esp. macOS & Windows).
+      - CHOKIDAR_USEPOLLING=true
+    command: npm run dev -- --host 0.0.0.0
+    stdin_open: true
+    tty: true
+
+volumes:
+  portfolio_node_modules:
