@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ResearchSection from '../components/ResearchSection.astro';
+import seo from '../data/seo.json';
+---
+
+<BaseLayout
+  title={seo.research.title}
+  description={seo.research.description}
+  keywords={seo.research.keywords}
+  path="/research/"
+>
+  <section class="container-page py-16 sm:py-20">
+    <p class="eyebrow">Research & writing</p>
+    <h1 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl" style="color: var(--color-ink);">
+      Research interests
+    </h1>
+    <p class="mt-4 max-w-3xl text-base leading-relaxed" style="color: var(--color-ink-soft);">
+      Beyond shipping systems, I'm interested in how AI changes the way teams
+      work and decide. My focus sits at the intersection of agentic systems,
+      multimodal retrieval, edge reliability, and enterprise adoption — grounded
+      in production constraints rather than benchmarks alone.
+    </p>
+
+    <div class="mt-12">
+      <ResearchSection detailed={true} />
+    </div>
+  </section>
+</BaseLayout>
