@@ -1,0 +1,93 @@
+---
+import siteContent from '../data/site_content.json';
+
+interface Props {
+  title: string;
+  description: string;
+  keywords?: string;
+  /** Path of the current page, e.g. "/case-studies/". Defaults to current URL. */
+  path?: string;
+  ogType?: 'website' | 'article';
+  /** Render the JSON-LD Person schema (home page only by default). */
+  personSchema?: boolean;
+}
+
+const {
+  title,
+  description,
+  keywords,
+  path,
+  ogType = 'website',
+  personSchema = false,
+} = Astro.props;
+
+const canonical = new URL(path ?? Astro.url.pathname, Astro.site).href;
+const { contact, metadata } = siteContent;
+const hasLinkedIn = contact.linkedin?.startsWith('http');
+
+const sameAs = [contact.github, ...(hasLinkedIn ? [contact.linkedin] : [])];
+
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: metadata.name,
+  jobTitle: 'AI Systems Engineer',
+  description: metadata.portfolio_positioning,
+  url: 'https://pinakin7.github.io/',
+  email: `mailto:${contact.email}`,
+  sameAs,
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'University of Toronto' },
+    { '@type': 'CollegeOrUniversity', name: 'Amity University' },
+  ],
+  knowsAbout: [
+    'Agentic AI',
+    'Video-RAG',
+    'Edge AI',
+    'Computer Vision',
+    'ML Infrastructure',
+    'Inference Optimization',
+    'MLOps',
+    'TensorRT',
+    'CUDA',
+    'NVIDIA Jetson',
+  ],
+};
+---
+
+<!-- Global metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+<link rel="icon" type="image/png" href="/logo_preet.png" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="canonical" href={canonical} />
+
+<!-- Primary meta -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+{keywords && <meta name="keywords" content={keywords} />}
+<meta name="author" content={metadata.name} />
+<meta name="robots" content="index, follow" />
+
+<!-- Open Graph -->
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:site_name" content={`${metadata.name} — AI Systems Engineer`} />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+
+{
+  personSchema && (
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(person)}
+    />
+  )
+}
