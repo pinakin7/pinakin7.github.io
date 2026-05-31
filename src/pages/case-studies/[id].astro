@@ -1,0 +1,147 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+
+export async function getStaticPaths() {
+  const studies = await getCollection('caseStudies');
+  return studies.map((entry) => ({
+    params: { id: entry.data.id },
+    props: { study: entry.data },
+  }));
+}
+
+const { study } = Astro.props;
+
+// Split the leading metric out of each impact string for the metric cards.
+function splitMetric(point: string): { value: string; label: string } {
+  const match = point.match(/^([0-9][0-9.,]*\s*(?:%|x|FPS|fps)?)\s+(.*)$/);
+  if (match) return { value: match[1].trim(), label: match[2].trim() };
+  return { value: '', label: point };
+}
+const metrics = study.impact.map(splitMetric);
+---
+
+<BaseLayout
+  title={`${study.title} | Preet Viradiya`}
+  description={study.one_liner}
+  path={`/case-studies/${study.id}/`}
+  ogType="article"
+>
+  <article class="container-page py-12 sm:py-16">
+    <a
+      href="/case-studies/"
+      class="inline-flex items-center gap-1.5 text-sm font-medium"
+      style="color: var(--color-muted);"
+    >
+      <Icon name="arrow-left" size={16} />
+      All case studies
+    </a>
+
+    <header class="mt-6 max-w-3xl">
+      <p class="eyebrow">{study.category}</p>
+      <h1 class="mt-3 text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl" style="color: var(--color-ink);">
+        {study.title}
+      </h1>
+      <p class="mt-4 text-lg leading-relaxed" style="color: var(--color-ink-soft);">
+        {study.one_liner}
+      </p>
+    </header>
+
+    <!-- Impact metrics -->
+    <section class="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+      {
+        metrics.map((m) => (
+          <div class="card !p-5">
+            {m.value && (
+              <p class="metric-num text-2xl font-extrabold tracking-tight sm:text-3xl" style="color: var(--color-accent);">
+                {m.value}
+              </p>
+            )}
+            <p class="mt-1 text-sm leading-snug" style="color: var(--color-ink-soft);">
+              {m.label}
+            </p>
+          </div>
+        ))
+      }
+    </section>
+
+    <div class="mt-12 grid gap-10 lg:grid-cols-3">
+      <!-- Main narrative -->
+      <div class="space-y-10 lg:col-span-2">
+        <section>
+          <h2 class="section-heading">The problem</h2>
+          <p class="mt-3 leading-relaxed" style="color: var(--color-ink-soft);">{study.problem}</p>
+        </section>
+
+        <section>
+          <h2 class="section-heading">What I built</h2>
+          <p class="mt-3 leading-relaxed" style="color: var(--color-ink-soft);">{study.solution}</p>
+        </section>
+
+        <section>
+          <h2 class="section-heading">Technical approach</h2>
+          <ul class="mt-4 space-y-2.5">
+            {
+              study.technical_details.map((d) => (
+                <li class="flex items-start gap-2.5 leading-relaxed" style="color: var(--color-ink-soft);">
+                  <span class="mt-1 shrink-0" style="color: var(--color-accent);">
+                    <Icon name="check" size={18} />
+                  </span>
+                  <span>{d}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <!-- Visual placeholders (real diagrams to be added later) -->
+        <section>
+          <h2 class="section-heading">Visuals</h2>
+          <div class="mt-4 grid gap-4 sm:grid-cols-2">
+            {
+              study.suggested_visuals.map((v) => (
+                <div
+                  class="flex min-h-32 items-center justify-center rounded-xl border border-dashed p-5 text-center text-sm"
+                  style="border-color: var(--color-line); background-color: var(--color-surface); color: var(--color-muted);"
+                >
+                  {v}
+                </div>
+              ))
+            }
+          </div>
+        </section>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="space-y-6">
+        <div class="card">
+          <h3 class="text-sm font-bold uppercase tracking-wide" style="color: var(--color-ink);">
+            Skills & tools
+          </h3>
+          <div class="mt-3 flex flex-wrap gap-1.5">
+            {study.skills.map((s) => <span class="tag">{s}</span>)}
+          </div>
+        </div>
+
+        <div class="card" style="background-color: var(--color-accent-soft); border-color: transparent;">
+          <h3 class="text-sm font-bold uppercase tracking-wide" style="color: var(--color-accent-strong);">
+            Why it matters
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed" style="color: var(--color-ink-soft);">
+            {study.recruiter_angle}
+          </p>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Footer CTA -->
+    <div class="mt-14 flex flex-wrap gap-3 border-t pt-8" style="border-color: var(--color-line);">
+      <a class="btn btn-primary" href="/contact/">
+        Get in touch
+        <Icon name="arrow-right" size={16} />
+      </a>
+      <a class="btn btn-secondary" href="/case-studies/">More case studies</a>
+    </div>
+  </article>
+</BaseLayout>
