@@ -1,0 +1,60 @@
+---
+import siteContent from '../data/site_content.json';
+
+const { skills } = siteContent;
+
+// Human-readable headings + recruiter-intent subtitles for each JSON key.
+const groupMeta: Record<string, { title: string; intent: string }> = {
+  ai_ml_genai: {
+    title: 'AI / ML / GenAI',
+    intent: 'For AI/ML and GenAI hiring managers',
+  },
+  llm_rag_serving: {
+    title: 'LLM, RAG & Serving',
+    intent: 'For GenAI / Agentic AI & inference teams',
+  },
+  ml_validation: {
+    title: 'ML Modeling & Validation',
+    intent: 'For applied ML and model-quality roles',
+  },
+  infrastructure: {
+    title: 'Infrastructure & MLOps',
+    intent: 'For MLOps / platform engineering teams',
+  },
+  systems_edge: {
+    title: 'Systems & Edge',
+    intent: 'For edge AI and performance engineering',
+  },
+  consulting_delivery: {
+    title: 'Consulting & Delivery',
+    intent: 'For forward-deployed / applied AI consulting',
+  },
+};
+
+const groups = Object.entries(skills) as [string, string[]][];
+---
+
+<div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+  {
+    groups.map(([key, items]) => {
+      const meta = groupMeta[key] ?? { title: key, intent: '' };
+      return (
+        <div class="card">
+          <h3 class="text-base font-bold tracking-tight" style="color: var(--color-ink);">
+            {meta.title}
+          </h3>
+          {meta.intent && (
+            <p class="mt-1 text-xs font-medium" style="color: var(--color-muted);">
+              {meta.intent}
+            </p>
+          )}
+          <div class="mt-4 flex flex-wrap gap-1.5">
+            {items.map((s) => (
+              <span class="tag">{s}</span>
+            ))}
+          </div>
+        </div>
+      );
+    })
+  }
+</div>
