@@ -1,0 +1,51 @@
+---
+import siteContent from '../data/site_content.json';
+import Icon from './Icon.astro';
+
+const { hero } = siteContent;
+---
+
+<section class="relative overflow-hidden">
+  <!-- Subtle, non-flashy grid backdrop -->
+  <div
+    class="pointer-events-none absolute inset-0 -z-10"
+    style="background-image: radial-gradient(var(--color-line) 1px, transparent 1px); background-size: 28px 28px; opacity: 0.5; mask-image: linear-gradient(to bottom, black, transparent 75%);"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="container-page py-20 sm:py-28">
+    <div class="max-w-3xl">
+      <p class="eyebrow">{hero.eyebrow}</p>
+
+      <h1
+        class="mt-5 text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl"
+        style="color: var(--color-ink);"
+      >
+        {hero.headline}
+      </h1>
+
+      <p class="mt-6 text-lg leading-relaxed" style="color: var(--color-ink-soft);">
+        {hero.subheadline}
+      </p>
+
+      <div
+        class="mt-6 inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium"
+        style="background-color: var(--color-accent-soft); color: var(--color-accent-strong);"
+      >
+        <Icon name="spark" size={16} />
+        {hero.recruiter_pitch}
+      </div>
+
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a class="btn btn-primary" href="/case-studies/">
+          {hero.cta_primary}
+          <Icon name="arrow-right" size={16} />
+        </a>
+        <a class="btn btn-secondary" href="/contact/">
+          {hero.cta_secondary}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
