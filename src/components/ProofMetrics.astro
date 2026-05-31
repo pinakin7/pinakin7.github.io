@@ -1,0 +1,40 @@
+---
+import siteContent from '../data/site_content.json';
+
+const { hero } = siteContent;
+
+// Split a proof point like "45% reduction in manual monitoring"
+// into a leading metric ("45%") and a label ("reduction in manual monitoring").
+function splitMetric(point: string): { value: string; label: string } {
+  const match = point.match(/^([0-9][0-9.,]*\s*(?:%|x|FPS|fps)?)\s+(.*)$/);
+  if (match) {
+    return { value: match[1].trim(), label: match[2].trim() };
+  }
+  return { value: '', label: point };
+}
+
+const metrics = hero.proof_points.map(splitMetric);
+---
+
+<section class="border-y" style="border-color: var(--color-line); background-color: var(--color-surface);">
+  <div class="container-page py-12">
+    <h2 class="eyebrow">Proof of impact</h2>
+    <dl class="mt-6 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3">
+      {
+        metrics.map((m) => (
+          <div>
+            <dt
+              class="metric-num text-3xl font-extrabold tracking-tight sm:text-4xl"
+              style="color: var(--color-accent);"
+            >
+              {m.value}
+            </dt>
+            <dd class="mt-1 text-sm leading-snug" style="color: var(--color-ink-soft);">
+              {m.label}
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
