@@ -1,0 +1,13 @@
+# Keep the dev image build context small.
+node_modules
+dist
+.astro
+.git
+.github
+.vscode
+.idea
+.DS_Store
+npm-debug.log*
+.env
+.env.*
+docs
