@@ -1,0 +1,125 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+
+/* ------------------------------------------------------------------ */
+/* Design tokens (Tailwind v4 @theme). Clean, credible, light-primary. */
+/* ------------------------------------------------------------------ */
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", "Fira Code",
+    Menlo, monospace;
+
+  /* Surfaces */
+  --color-canvas: #ffffff;
+  --color-surface: #f8fafc; /* slate-50 */
+  --color-surface-2: #f1f5f9; /* slate-100 */
+
+  /* Ink */
+  --color-ink: #0f172a; /* slate-900 */
+  --color-ink-soft: #334155; /* slate-700 */
+  --color-muted: #64748b; /* slate-500/600 */
+
+  /* Lines */
+  --color-line: #e2e8f0; /* slate-200 */
+
+  /* Accent — restrained indigo */
+  --color-accent: #4f46e5; /* indigo-600 */
+  --color-accent-strong: #4338ca; /* indigo-700 */
+  --color-accent-soft: #eef2ff; /* indigo-50 */
+}
+
+/* ------------------------------------------------------------------ */
+/* Base element styling                                                */
+/* ------------------------------------------------------------------ */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-ink-soft);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Hide the default disclosure triangle on the mobile menu toggle */
+summary::-webkit-details-marker {
+  display: none;
+}
+summary {
+  list-style: none;
+}
+
+/* Reusable utility-ish classes used across components */
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.18em];
+    color: var(--color-accent);
+  }
+
+  .section-heading {
+    @apply text-2xl font-bold tracking-tight sm:text-3xl;
+    color: var(--color-ink);
+  }
+
+  .metric-num {
+    font-family: var(--font-mono);
+    font-feature-settings: "tnum" 1;
+  }
+
+  .tag {
+    @apply inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-medium;
+    border-color: var(--color-line);
+    background-color: var(--color-surface);
+    color: var(--color-ink-soft);
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-colors;
+  }
+  .btn-primary {
+    background-color: var(--color-accent);
+    color: #ffffff;
+  }
+  .btn-primary:hover {
+    background-color: var(--color-accent-strong);
+  }
+  .btn-secondary {
+    @apply border;
+    border-color: var(--color-line);
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+  }
+  .btn-secondary:hover {
+    background-color: var(--color-surface);
+  }
+
+  .card {
+    @apply rounded-xl border p-6 transition-shadow;
+    border-color: var(--color-line);
+    background-color: var(--color-canvas);
+  }
+  .card:hover {
+    box-shadow:
+      0 1px 2px rgba(15, 23, 42, 0.04),
+      0 8px 24px rgba(15, 23, 42, 0.06);
+  }
+
+  .link-accent {
+    color: var(--color-accent);
+    @apply font-medium underline-offset-4 hover:underline;
+  }
+}
