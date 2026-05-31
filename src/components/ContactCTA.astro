@@ -1,0 +1,74 @@
+---
+import siteContent from '../data/site_content.json';
+import Icon from './Icon.astro';
+
+interface Props {
+  /** Full = standalone contact page; compact = home CTA band. */
+  variant?: 'compact' | 'full';
+}
+
+const { variant = 'compact' } = Astro.props;
+const { contact, hero } = siteContent;
+const hasLinkedIn = contact.linkedin?.startsWith('http');
+
+const channels = [
+  { label: 'Email', value: contact.email, href: `mailto:${contact.email}`, icon: 'email' as const, external: false },
+  { label: 'GitHub', value: 'github.com/pinakin7', href: contact.github, icon: 'github' as const, external: true },
+  ...(hasLinkedIn
+    ? [{ label: 'LinkedIn', value: 'LinkedIn profile', href: contact.linkedin, icon: 'linkedin' as const, external: true }]
+    : []),
+];
+---
+
+<div
+  class={
+    variant === 'full'
+      ? ''
+      : 'rounded-2xl border p-8 sm:p-10'
+  }
+  style={variant === 'compact'
+    ? 'border-color: var(--color-line); background-color: var(--color-surface);'
+    : ''}
+>
+  <p class="eyebrow">Contact</p>
+  <h2 class="section-heading mt-3">{contact.cta}</h2>
+  <p class="mt-3 max-w-2xl text-sm leading-relaxed" style="color: var(--color-ink-soft);">
+    {hero.recruiter_pitch}
+  </p>
+
+  <div class="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      channels.map((c) => (
+        <a
+          href={c.href}
+          target={c.external ? '_blank' : undefined}
+          rel={c.external ? 'noopener' : undefined}
+          class="card flex items-center gap-3 !p-4"
+        >
+          <span
+            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg"
+            style="background-color: var(--color-accent-soft); color: var(--color-accent);"
+          >
+            <Icon name={c.icon} size={20} />
+          </span>
+          <span class="min-w-0">
+            <span class="block text-sm font-semibold" style="color: var(--color-ink);">
+              {c.label}
+            </span>
+            <span class="block truncate text-sm" style="color: var(--color-muted);">
+              {c.value}
+            </span>
+          </span>
+        </a>
+      ))
+    }
+  </div>
+
+  {
+    !hasLinkedIn && (
+      <p class="mt-4 text-xs" style="color: var(--color-muted);">
+        LinkedIn link coming soon.
+      </p>
+    )
+  }
+</div>
