@@ -1,0 +1,27 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  /** Optional "view all"-style link shown on sm+ screens. */
+  link?: { label: string; href: string };
+}
+
+const { eyebrow, title, link } = Astro.props;
+---
+
+<div class="reveal flex items-end justify-between gap-4">
+  <div>
+    <p class="eyebrow">{eyebrow}</p>
+    <h2 class="section-heading mt-3">{title}</h2>
+  </div>
+  {
+    link && (
+      <a class="link-arrow hidden shrink-0 sm:inline-flex" href={link.href}>
+        {link.label}
+        <Icon name="arrow-right" size={16} />
+      </a>
+    )
+  }
+</div>
