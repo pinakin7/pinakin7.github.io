@@ -18,39 +18,38 @@ interface Props {
 const { experiences, compact = false } = Astro.props;
 ---
 
-<ol class="relative space-y-10 border-l-2 pl-6 sm:pl-8" style="border-color: var(--color-line);">
+<ol class="timeline relative space-y-12 pl-7 sm:pl-9">
   {
-    experiences.map((job) => (
-      <li class="relative">
-        <span
-          class="absolute -left-[31px] top-1.5 h-3.5 w-3.5 rounded-full ring-4 ring-white sm:-left-[39px]"
-          style="background-color: var(--color-accent);"
-          aria-hidden="true"
-        />
+    experiences.map((job, i) => (
+      <li class="reveal relative" style={`--reveal-delay: ${i * 0.06}s;`}>
+        <span class="timeline-marker" aria-hidden="true" />
 
-        <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-          <h3 class="text-lg font-bold tracking-tight" style="color: var(--color-ink);">
+        <div class="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+          <h3 class="text-lg font-semibold tracking-tight" style="color: var(--color-ink);">
             {job.role}
-            <span style="color: var(--color-accent);"> · {job.company}</span>
+            <span class="font-medium" style="color: var(--color-accent);">
+              {' '}· {job.company}
+            </span>
           </h3>
-          <p class="metric-num text-sm font-medium" style="color: var(--color-muted);">
-            {job.dates}
-          </p>
+          <p class="mono-label shrink-0">{job.dates}</p>
         </div>
 
-        <p class="mt-1 text-sm font-medium" style="color: var(--color-ink-soft);">
+        <p class="mt-1.5 text-sm font-medium" style="color: var(--color-ink-soft);">
           {job.theme}
         </p>
 
         {compact ? (
-          <p class="mt-3 text-sm leading-relaxed" style="color: var(--color-ink-soft);">
+          <p class="mt-3 max-w-3xl text-sm leading-relaxed" style="color: var(--color-muted);">
             {job.summary}
           </p>
         ) : (
-          <ul class="mt-4 space-y-2">
+          <ul class="mt-4 max-w-3xl space-y-2.5">
             {job.highlights.map((h) => (
-              <li class="flex items-start gap-2 text-sm leading-relaxed" style="color: var(--color-ink-soft);">
-                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style="background-color: var(--color-accent);" />
+              <li class="flex items-start gap-3 text-sm leading-relaxed" style="color: var(--color-ink-soft);">
+                <span
+                  class="mt-[9px] h-px w-3.5 shrink-0"
+                  style="background-color: var(--color-line-strong);"
+                />
                 <span>{h}</span>
               </li>
             ))}
@@ -66,3 +65,35 @@ const { experiences, compact = false } = Astro.props;
     ))
   }
 </ol>
+
+<style>
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    bottom: 6px;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      var(--color-accent) 0,
+      var(--color-line) 120px,
+      var(--color-line)
+    );
+  }
+  .timeline-marker {
+    position: absolute;
+    left: calc(-1.75rem - 4.5px);
+    top: 7px;
+    height: 10px;
+    width: 10px;
+    border-radius: 9999px;
+    border: 2px solid var(--color-accent);
+    background-color: var(--color-canvas);
+  }
+  @media (min-width: 640px) {
+    .timeline-marker {
+      left: calc(-2.25rem - 4.5px);
+    }
+  }
+</style>
