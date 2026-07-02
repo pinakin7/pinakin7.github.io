@@ -227,26 +227,26 @@
   },
   {
     "id": "dcs_edge_file_sync",
-    "title": "Data Collection System — Edge-to-Cloud File Sync Sidecar",
+    "title": "FalcHub — Edge-to-Cloud File Sync Sidecar",
     "category": "Edge Systems + Cloud Security + Python",
     "priority": 7,
     "homepage_featured": false,
-    "one_liner": "Designed and built a production edge sidecar (Python) that syncs field-device files to AWS S3 using certificate-based IoT authentication, with a crash-safe multi-process architecture and full supply-chain-secured CI/CD.",
-    "problem": "Unattended edge devices in industrial environments must reliably upload locally produced files to the cloud for months at a time — surviving crashes, power loss, and network outages without ever losing or double-uploading data, and without storing any static cloud credentials on the device.",
-    "solution": "Built a fork-based supervisor process that isolates three worker processes (file discovery, upload, and cleanup) communicating only through a shared SQLite ledger with atomic, crash-safe state transitions. Files are uploaded to AWS S3 using short-lived credentials obtained via AWS IoT X.509 certificate authentication, confirmed with a backend API, and deleted only after a retention-gated, confirmed sync.",
+    "one_liner": "Designed and built FalcHub, a production edge sidecar (Python) that reliably syncs GB-scale daily file volume from field devices to AWS S3 over unreliable networks — using a concurrent multi-process pipeline, certificate-based IoT auth, and crash-safe atomic state.",
+    "problem": "Unattended edge devices in industrial environments produce GB-scale file volume every day and must upload it to the cloud continuously for months — over decent-but-unreliable LAN/WiFi links that drop frequently — surviving crashes, power loss, and outages without ever losing or double-uploading data, and without storing any static cloud credentials on the device.",
+    "solution": "Built a fork-based supervisor process that isolates three worker processes (file discovery, upload, and cleanup) communicating only through a shared SQLite ledger with atomic, crash-safe state transitions. High per-device file volume is absorbed by a concurrent pipeline that keeps scanning, uploading, and retention from blocking each other; files upload to AWS S3 using short-lived credentials obtained via AWS IoT X.509 certificate authentication, are confirmed with a backend API, and are deleted only after a retention-gated, confirmed sync.",
     "impact": [
-      "235 passing tests across unit, container, and live tiers",
-      "76% ownership across 227 commits over 8 months",
-      "3 architectural generations designed solo",
-      "0 static AWS keys on any edge device"
+      "GB-scale files synced per device, every day",
+      "3 isolated worker processes for concurrent, non-blocking throughput",
+      "Zero data loss across crashes and unreliable-network drops",
+      "0 static AWS keys — short-lived IoT credentials only"
     ],
     "technical_details": [
-      "Fork-safe multi-process architecture: a SystemOrchestrator supervises isolated Walker/Uploader/Cleaner children with restart-storm throttling and a staged shutdown ladder",
-      "Zero-ambient-credentials security model: every S3 client requires explicit IoT-issued temporary credentials via an X.509 → role-alias → STS exchange",
-      "Crash-safe file lifecycle with an atomic compare-and-swap claim, a stuck-upload watchdog, and an append-only deletion/registration audit ledger",
-      "Two-stage Docker build that compiles a patched SQLite (SHA3-256 pinned) to fix a WAL-checkpoint correctness bug, enforced by a boot-time and build-time safety gate",
-      "Jenkins CI/CD with SonarQube quality gates, cosign image signing, and SPDX SBOM generation/attestation shipped to Harbor and AWS ECR",
-      "Reusable path-traversal-safe zip extraction utility closing a zip-slip vulnerability in the credential-provisioning flow"
+      "Concurrency via process isolation: independent Walker/Uploader/Cleaner workers so high per-device file volume never blocks scanning, upload, or retention — sustaining throughput on constrained edge hardware",
+      "Resilient to unreliable LAN/WiFi: bounded retries with a transport-vs-permanent failure classifier and a watchdog that reclaims stalled uploads, so files still reach S3 despite frequent link drops",
+      "Efficient at scale: an atomic compare-and-swap claim ensures workers never contend or re-upload a file, and per-process credential caching avoids repeated STS round-trips",
+      "Fork-safe supervisor (SystemOrchestrator) with restart-storm throttling and a staged shutdown ladder for months of unattended operation",
+      "Zero-ambient-credentials model: every S3 client requires explicit IoT-issued temporary credentials via an X.509 → role-alias → STS exchange",
+      "Two-stage Docker build compiling a patched SQLite (SHA3-256 pinned) to fix a WAL-checkpoint bug, enforced by a boot-time and build-time safety gate; Jenkins CI/CD with cosign signing + SPDX SBOM attestation to Harbor/ECR"
     ],
     "skills": [
       "Python",
@@ -265,30 +265,30 @@
       "Zero-credential IoT → STS credential exchange flow",
       "CI/CD supply-chain pipeline (sign + SBOM + promote)"
     ],
-    "recruiter_angle": "Demonstrates production systems, security, and edge/IoT engineering depth beyond model work — crash-safe distributed process design and end-to-end supply-chain-secured delivery, owned solo."
+    "recruiter_angle": "Demonstrates high-volume, constrained-network edge throughput plus production security and supply-chain depth — concurrent crash-safe process design and end-to-end signed/attested delivery, owned solo."
   },
   {
     "id": "visitor_log_platform",
-    "title": "Visitor Log — Multi-Site Visitor Management Platform",
+    "title": "VisitorLog — Multi-Site Visitor Management Platform",
     "category": "Full-Stack + Zero-Trust Security + Platform",
     "priority": 8,
     "homepage_featured": false,
-    "one_liner": "Architected and built end to end a multi-site visitor-management platform with security-classified approval routing, signed QR badge credentials, and self-service kiosks on a zero-trust FastAPI + Next.js + PostgreSQL stack.",
-    "problem": "A multi-site organization needed to replace manual, ad-hoc visitor tracking with a governed workflow that routes each visit through the correct security approval based on classification, protects sensitive PII, and produces a complete, auditable record of every visit and system access.",
-    "solution": "Designed a 3-tier system (Cloudflare Access → Next.js BFF → FastAPI API → PostgreSQL) that routes visit requests to the right approver by security classification, collects and encrypts only the PII each classification requires, and issues signed, site-scoped QR credentials that unattended kiosks use for check-in, badge printing, and checkout — all behind zero-trust, per-application edge authentication.",
+    "one_liner": "Architected and built VisitorLog end to end — a multi-site platform serving many kiosks and concurrent approvers with low-latency check-in, signed QR badge credentials, and an efficient, horizontally scalable zero-trust FastAPI + Next.js + PostgreSQL stack.",
+    "problem": "A multi-site organization needed to replace manual, ad-hoc visitor tracking with a governed workflow that serves many kiosks and tens of concurrent approvers across sites — routing each of hundreds of daily visits through the correct security approval based on classification, protecting sensitive PII, and producing a complete, auditable record of every visit and system access, all without sacrificing kiosk responsiveness.",
+    "solution": "Designed a horizontally scalable 3-tier system (Cloudflare Access → Next.js BFF → FastAPI API → PostgreSQL) with a stateless API and pooled database connections to serve concurrent kiosks and approvers efficiently. It routes visit requests to the right approver by security classification, collects and encrypts only the PII each classification requires, and issues signed, site-scoped QR credentials that unattended kiosks verify in-process for sub-second check-in, badge printing, and checkout — all behind zero-trust, per-application edge authentication.",
     "impact": [
       "73 API endpoints across 17 routers",
-      "42 database models, 18 zero-downtime migrations",
-      "193 automated tests running in CI",
-      "82% of 848 commits shipped in 29 days"
+      "Multi-site, many-kiosk deployment",
+      "Sub-second kiosk check-in and QR validation",
+      "193 automated tests running in CI"
     ],
     "technical_details": [
-      "Zero-trust, per-area JWT audience scoping so tokens from one Cloudflare Access surface cannot be replayed on another; removed an unsafe shared-cookie design",
-      "Custom signed QR credential format (VLQ1) with per-site key rotation/revocation that retires compromised keys without invalidating previously issued credentials",
-      "Field-level PII encryption at rest, gated by visit classification, with masked display everywhere policy does not require it",
-      "Layered FastAPI service (routers → services → repositories → models) behind a mandatory internal service token, failing closed on missing production config",
-      "Carried a live PostgreSQL schema through two breaking domain-model changes across 18 linear Alembic migrations with no data loss",
-      "Jenkins CI/CD running parallel Dockerized backend (pytest) and frontend (Vitest + tsc + ESLint) stages, promoting production images to Harbor on merge"
+      "Built for horizontal scale: a stateless FastAPI service with pooled PostgreSQL connections serves many kiosks and tens of concurrent approvers across sites without per-request connection churn",
+      "Low-latency kiosk path: signed QR (VLQ1) credentials are verified cryptographically in-process — no round-trip to a token store — keeping check-in/checkout sub-second under load",
+      "Rate-limited (slowapi) public kiosk surface stays responsive and abuse-resistant while unauthenticated",
+      "Parallel Dockerized CI stages (backend pytest + frontend Vitest/tsc/ESLint) keep the pipeline fast as the codebase grows",
+      "Zero-trust, per-area JWT audience scoping so tokens from one Cloudflare Access surface cannot be replayed on another",
+      "Field-level PII encryption at rest gated by visit classification; 42-model schema carried through 18 zero-downtime Alembic migrations"
     ],
     "skills": [
       "FastAPI",
@@ -307,6 +307,6 @@
       "Signed QR credential issuance + kiosk check-in sequence",
       "Per-area AUD token-scoping diagram"
     ],
-    "recruiter_angle": "Strong end-to-end full-stack and security case study — solo-architected zero-trust platform with signed credentials, encrypted PII, and CI/CD from scratch, delivered v1.0.0 in 29 days."
+    "recruiter_angle": "Strong end-to-end full-stack case study — a horizontally scalable multi-site platform with low-latency kiosk UX and zero-trust security (signed credentials, encrypted PII, per-area token scoping), architected and shipped solo to v1.0.0."
   }
 ]
