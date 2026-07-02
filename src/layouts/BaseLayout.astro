@@ -28,11 +28,30 @@ const { title, description, keywords, path, ogType, personSchema } =
       ogType={ogType}
       personSchema={personSchema}
     />
+    <script is:inline>
+      // Gate for reveal-on-scroll: without JS, content is never hidden.
+      document.documentElement.classList.add('js');
+    </script>
   </head>
-  <body class="min-h-screen flex flex-col">
+  <body class="relative flex min-h-screen flex-col">
+    <!-- Ambient backdrop: hairline grid fading down + a single accent bloom -->
+    <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[640px] overflow-hidden" aria-hidden="true">
+      <div
+        class="absolute inset-0"
+        style="background-image: linear-gradient(rgba(147,151,175,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(147,151,175,0.055) 1px, transparent 1px); background-size: 56px 56px; mask-image: linear-gradient(to bottom, black 20%, transparent 90%);"
+      >
+      </div>
+      <div
+        class="absolute left-1/2 top-[-260px] h-[520px] w-[820px] -translate-x-1/2 rounded-full"
+        style="background: radial-gradient(closest-side, rgba(139,147,255,0.14), transparent); filter: blur(40px);"
+      >
+      </div>
+    </div>
+
     <a
       href="#main"
-      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:shadow"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:border focus:px-4 focus:py-2"
+      style="background-color: var(--color-surface-2); border-color: var(--color-line-strong); color: var(--color-ink);"
       >Skip to content</a
     >
     <Nav />
@@ -40,5 +59,60 @@ const { title, description, keywords, path, ogType, personSchema } =
       <slot />
     </main>
     <Footer />
+
+    <script>
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Reveal on scroll — stagger via --reveal-delay set per element.
+      const revealed = document.querySelectorAll<HTMLElement>('.reveal');
+      if (reduced || !('IntersectionObserver' in window)) {
+        revealed.forEach((el) => el.classList.add('is-visible'));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                io.unobserve(entry.target);
+              }
+            }
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+        );
+        revealed.forEach((el) => io.observe(el));
+      }
+
+      // Count-up for metric values marked with data-count.
+      // Non-numeric prefixes/suffixes ("30 FPS", "2x", "45%") are preserved.
+      const counters = document.querySelectorAll<HTMLElement>('[data-count]');
+      if (!reduced && 'IntersectionObserver' in window && counters.length) {
+        const cio = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              cio.unobserve(entry.target);
+              const el = entry.target as HTMLElement;
+              const raw = el.dataset.count ?? el.textContent ?? '';
+              const match = raw.match(/^([0-9]+(?:\.[0-9]+)?)([\s\S]*)$/);
+              if (!match) continue;
+              const target = parseFloat(match[1]);
+              const suffix = match[2];
+              const decimals = match[1].includes('.') ? match[1].split('.')[1].length : 0;
+              const start = performance.now();
+              const dur = 900;
+              const tick = (now: number) => {
+                const t = Math.min((now - start) / dur, 1);
+                const eased = 1 - Math.pow(1 - t, 3);
+                el.textContent = (target * eased).toFixed(decimals) + suffix;
+                if (t < 1) requestAnimationFrame(tick);
+              };
+              requestAnimationFrame(tick);
+            }
+          },
+          { threshold: 0.4 }
+        );
+        counters.forEach((el) => cio.observe(el));
+      }
+    </script>
   </body>
 </html>

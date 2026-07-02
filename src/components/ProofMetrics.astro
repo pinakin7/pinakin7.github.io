@@ -16,21 +16,25 @@ function splitMetric(point: string): { value: string; label: string } {
 const metrics = hero.proof_points.map(splitMetric);
 ---
 
-<section class="border-y" style="border-color: var(--color-line); background-color: var(--color-surface);">
-  <div class="container-page py-12">
-    <h2 class="eyebrow">Proof of impact</h2>
-    <dl class="mt-6 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3">
+<section class="band">
+  <div class="container-page py-12 sm:py-14">
+    <h2 class="eyebrow reveal">Proof of impact</h2>
+    <dl class="mt-8 grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3">
       {
-        metrics.map((m) => (
-          <div>
-            <dt
-              class="metric-num text-3xl font-extrabold tracking-tight sm:text-4xl"
-              style="color: var(--color-accent);"
-            >
-              {m.value}
-            </dt>
-            <dd class="mt-1 text-sm leading-snug" style="color: var(--color-ink-soft);">
-              {m.label}
+        metrics.map((m, i) => (
+          <div class="reveal metric-cell" style={`--reveal-delay: ${i * 0.05}s;`}>
+            <dt class="sr-only">{m.label}</dt>
+            <dd>
+              <span
+                class="metric-num block text-3xl font-semibold sm:text-4xl"
+                style="color: var(--color-ink);"
+                data-count={m.value}
+              >
+                {m.value}
+              </span>
+              <span class="mt-2 block text-sm leading-snug" style="color: var(--color-muted);">
+                {m.label}
+              </span>
             </dd>
           </div>
         ))
@@ -38,3 +42,24 @@ const metrics = hero.proof_points.map(splitMetric);
     </dl>
   </div>
 </section>
+
+<style>
+  .metric-cell {
+    position: relative;
+    padding-left: 1rem;
+  }
+  .metric-cell::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.3rem;
+    bottom: 0.3rem;
+    width: 2px;
+    border-radius: 1px;
+    background: linear-gradient(
+      to bottom,
+      var(--color-accent),
+      rgba(139, 147, 255, 0.1)
+    );
+  }
+</style>

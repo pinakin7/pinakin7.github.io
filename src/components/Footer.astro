@@ -6,42 +6,58 @@ const hasLinkedIn = contact.linkedin?.startsWith('http');
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t" style="border-color: var(--color-line); background-color: var(--color-surface);">
-  <div class="container-page py-10">
-    <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-      <div>
-        <p class="text-sm font-semibold" style="color: var(--color-ink);">
-          {metadata.name}
+<footer class="border-t" style="border-color: var(--color-line);">
+  <div class="container-page py-12">
+    <div class="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
+      <div class="max-w-sm">
+        <p class="flex items-baseline gap-2.5">
+          <span class="metric-num text-sm font-semibold" style="color: var(--color-accent);" aria-hidden="true">pv</span>
+          <span class="text-sm font-semibold" style="color: var(--color-ink);">{metadata.name}</span>
         </p>
-        <p class="mt-1 text-sm" style="color: var(--color-muted);">
-          AI Systems Engineer · Agentic AI · Edge/Video AI · ML Infrastructure
+        <p class="mono-label mt-2 leading-relaxed">
+          Agentic AI · Edge/Video AI · ML Infrastructure
         </p>
       </div>
 
-      <ul class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+      <ul class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
         <li>
-          <a class="link-accent" href={`mailto:${contact.email}`}>Email</a>
+          <a class="footer-link" href={`mailto:${contact.email}`}>Email</a>
         </li>
         <li>
-          <a class="link-accent" href={contact.github} target="_blank" rel="noopener">GitHub</a>
+          <a class="footer-link" href={contact.github} target="_blank" rel="noopener">GitHub</a>
         </li>
         {
           hasLinkedIn && (
             <li>
-              <a class="link-accent" href={contact.linkedin} target="_blank" rel="noopener">
+              <a class="footer-link" href={contact.linkedin} target="_blank" rel="noopener">
                 LinkedIn
               </a>
             </li>
           )
         }
         <li>
-          <a class="link-accent" href="/contact/">Contact</a>
+          <a class="footer-link" href="/contact/">Contact</a>
         </li>
       </ul>
     </div>
 
-    <p class="mt-8 text-xs" style="color: var(--color-muted);">
-      © {year} {metadata.name}. Built with Astro · Deployed on GitHub Pages.
-    </p>
+    <div
+      class="mt-10 flex flex-col gap-2 border-t pt-6 sm:flex-row sm:items-center sm:justify-between"
+      style="border-color: var(--color-line);"
+    >
+      <p class="mono-label">© {year} {metadata.name}</p>
+      <p class="mono-label">Built with Astro · Deployed on GitHub Pages</p>
+    </div>
   </div>
 </footer>
+
+<style>
+  .footer-link {
+    font-weight: 500;
+    color: var(--color-ink-soft);
+    transition: color 0.2s ease;
+  }
+  .footer-link:hover {
+    color: var(--color-ink);
+  }
+</style>

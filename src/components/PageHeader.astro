@@ -1,0 +1,30 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  /** Optional intro paragraph under the title. */
+  lede?: string;
+}
+
+const { eyebrow, title, lede } = Astro.props;
+---
+
+<header class="max-w-3xl">
+  <p class="eyebrow reveal">{eyebrow}</p>
+  <h1
+    class="reveal mt-4 text-3xl font-semibold tracking-tight text-balance sm:text-[2.5rem] sm:leading-[1.15]"
+    style="color: var(--color-ink); letter-spacing: -0.03em; --reveal-delay: 0.06s;"
+  >
+    {title}
+  </h1>
+  {
+    lede && (
+      <p
+        class="reveal mt-5 text-base leading-relaxed"
+        style="color: var(--color-ink-soft); --reveal-delay: 0.12s;"
+      >
+        {lede}
+      </p>
+    )
+  }
+</header>

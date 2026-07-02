@@ -34,20 +34,21 @@ const groupMeta: Record<string, { title: string; intent: string }> = {
 const groups = Object.entries(skills) as [string, string[]][];
 ---
 
-<div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
   {
-    groups.map(([key, items]) => {
+    groups.map(([key, items], i) => {
       const meta = groupMeta[key] ?? { title: key, intent: '' };
       return (
-        <div class="card">
-          <h3 class="text-base font-bold tracking-tight" style="color: var(--color-ink);">
-            {meta.title}
-          </h3>
-          {meta.intent && (
-            <p class="mt-1 text-xs font-medium" style="color: var(--color-muted);">
-              {meta.intent}
-            </p>
-          )}
+        <div class="card card-hover reveal" style={`--reveal-delay: ${(i % 3) * 0.07}s;`}>
+          <div class="flex items-baseline justify-between gap-3">
+            <h3 class="text-[0.9375rem] font-semibold tracking-tight" style="color: var(--color-ink);">
+              {meta.title}
+            </h3>
+            <span class="metric-num text-xs" style="color: var(--color-muted);" aria-hidden="true">
+              {String(items.length).padStart(2, '0')}
+            </span>
+          </div>
+          {meta.intent && <p class="mono-label mt-1.5">{meta.intent}</p>}
           <div class="mt-4 flex flex-wrap gap-1.5">
             {items.map((s) => (
               <span class="tag">{s}</span>
