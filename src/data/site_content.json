@@ -142,7 +142,9 @@
     "enterprise_ai_sprint_planning",
     "inference_optimization_mlops",
     "real_time_defect_detection",
-    "llm_pr_review_assistant"
+    "llm_pr_review_assistant",
+    "dcs_edge_file_sync",
+    "visitor_log_platform"
   ],
   "skills": {
     "ai_ml_genai": [
