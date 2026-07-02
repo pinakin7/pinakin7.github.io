@@ -18,3 +18,5 @@ pnpm-debug.log*
 .idea/
 
 .claude/
+
+new_projects/*
