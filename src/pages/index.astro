@@ -8,7 +8,7 @@ import ExperienceTimeline from '../components/ExperienceTimeline.astro';
 import SkillsGroups from '../components/SkillsGroups.astro';
 import ResearchSection from '../components/ResearchSection.astro';
 import ContactCTA from '../components/ContactCTA.astro';
-import Icon from '../components/Icon.astro';
+import SectionHeader from '../components/SectionHeader.astro';
 import siteContent from '../data/site_content.json';
 import seo from '../data/seo.json';
 
@@ -31,71 +31,55 @@ const featured = studies
   <ProofMetrics />
 
   <!-- Featured case studies -->
-  <section class="container-page py-16 sm:py-20">
-    <div class="flex items-end justify-between gap-4">
-      <div>
-        <p class="eyebrow">Featured work</p>
-        <h2 class="section-heading mt-2">Selected case studies</h2>
-      </div>
-      <a class="hidden items-center gap-1.5 text-sm font-semibold sm:inline-flex" style="color: var(--color-accent);" href="/case-studies/">
-        View all
-        <Icon name="arrow-right" size={16} />
-      </a>
-    </div>
-    <div class="mt-8 grid gap-5 sm:grid-cols-2">
-      {featured.map((study) => <CaseStudyCard study={study} />)}
+  <section class="container-page py-20 sm:py-24">
+    <SectionHeader
+      eyebrow="Featured work"
+      title="Selected case studies"
+      link={{ label: 'View all', href: '/case-studies/' }}
+    />
+    <div class="mt-10 grid gap-4 sm:grid-cols-2">
+      {featured.map((study, i) => <CaseStudyCard study={study} index={i} />)}
     </div>
   </section>
 
   <!-- Experience snapshot -->
-  <section class="border-t" style="border-color: var(--color-line); background-color: var(--color-surface);">
-    <div class="container-page py-16 sm:py-20">
-      <div class="flex items-end justify-between gap-4">
-        <div>
-          <p class="eyebrow">Experience</p>
-          <h2 class="section-heading mt-2">Where I've shipped AI systems</h2>
-        </div>
-        <a class="hidden items-center gap-1.5 text-sm font-semibold sm:inline-flex" style="color: var(--color-accent);" href="/experience/">
-          Full experience
-          <Icon name="arrow-right" size={16} />
-        </a>
-      </div>
-      <div class="mt-8">
+  <section class="band">
+    <div class="container-page py-20 sm:py-24">
+      <SectionHeader
+        eyebrow="Experience"
+        title="Where I've shipped AI systems"
+        link={{ label: 'Full experience', href: '/experience/' }}
+      />
+      <div class="mt-12">
         <ExperienceTimeline experiences={siteContent.experience} compact={true} />
       </div>
     </div>
   </section>
 
   <!-- Skills by recruiter intent -->
-  <section class="container-page py-16 sm:py-20">
-    <p class="eyebrow">Skills</p>
-    <h2 class="section-heading mt-2">Grouped by what you're hiring for</h2>
-    <div class="mt-8">
+  <section class="container-page py-20 sm:py-24">
+    <SectionHeader eyebrow="Skills" title="Grouped by what you're hiring for" />
+    <div class="mt-10">
       <SkillsGroups />
     </div>
   </section>
 
   <!-- Research -->
-  <section class="border-t" style="border-color: var(--color-line); background-color: var(--color-surface);">
-    <div class="container-page py-16 sm:py-20">
-      <div class="flex items-end justify-between gap-4">
-        <div>
-          <p class="eyebrow">Research & writing</p>
-          <h2 class="section-heading mt-2">Where I go deep</h2>
-        </div>
-        <a class="hidden items-center gap-1.5 text-sm font-semibold sm:inline-flex" style="color: var(--color-accent);" href="/research/">
-          More
-          <Icon name="arrow-right" size={16} />
-        </a>
-      </div>
-      <div class="mt-8">
+  <section class="band">
+    <div class="container-page py-20 sm:py-24">
+      <SectionHeader
+        eyebrow="Research & writing"
+        title="Where I go deep"
+        link={{ label: 'More', href: '/research/' }}
+      />
+      <div class="mt-10">
         <ResearchSection />
       </div>
     </div>
   </section>
 
   <!-- Contact -->
-  <section class="container-page py-16 sm:py-20">
+  <section class="container-page py-20 sm:py-24">
     <ContactCTA variant="compact" />
   </section>
 </BaseLayout>
