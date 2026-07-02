@@ -3,41 +3,49 @@ import siteContent from '../data/site_content.json';
 import Icon from './Icon.astro';
 
 const { hero } = siteContent;
+
+// Highlight the load-bearing phrase if present; fall back to plain text.
+const HIGHLIGHT = 'production-grade AI systems';
+const idx = hero.headline.indexOf(HIGHLIGHT);
+const parts =
+  idx === -1
+    ? null
+    : {
+        before: hero.headline.slice(0, idx),
+        after: hero.headline.slice(idx + HIGHLIGHT.length),
+      };
 ---
 
-<section class="relative overflow-hidden">
-  <!-- Subtle, non-flashy grid backdrop -->
-  <div
-    class="pointer-events-none absolute inset-0 -z-10"
-    style="background-image: radial-gradient(var(--color-line) 1px, transparent 1px); background-size: 28px 28px; opacity: 0.5; mask-image: linear-gradient(to bottom, black, transparent 75%);"
-    aria-hidden="true"
-  >
-  </div>
-
-  <div class="container-page py-20 sm:py-28">
+<section class="relative">
+  <div class="container-page pb-16 pt-20 sm:pb-24 sm:pt-28">
     <div class="max-w-3xl">
-      <p class="eyebrow">{hero.eyebrow}</p>
+      <p class="eyebrow reveal">{hero.eyebrow}</p>
 
       <h1
-        class="mt-5 text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl"
-        style="color: var(--color-ink);"
+        class="reveal mt-6 text-4xl font-semibold leading-[1.08] tracking-[-0.035em] text-balance sm:text-[3.4rem]"
+        style="color: var(--color-ink); --reveal-delay: 0.06s;"
       >
-        {hero.headline}
+        {
+          parts ? (
+            <>
+              {parts.before}
+              <span class="hero-highlight">{HIGHLIGHT}</span>
+              {parts.after}
+            </>
+          ) : (
+            hero.headline
+          )
+        }
       </h1>
 
-      <p class="mt-6 text-lg leading-relaxed" style="color: var(--color-ink-soft);">
+      <p
+        class="reveal mt-6 max-w-2xl text-lg leading-relaxed"
+        style="color: var(--color-ink-soft); --reveal-delay: 0.12s;"
+      >
         {hero.subheadline}
       </p>
 
-      <div
-        class="mt-6 inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium"
-        style="background-color: var(--color-accent-soft); color: var(--color-accent-strong);"
-      >
-        <Icon name="spark" size={16} />
-        {hero.recruiter_pitch}
-      </div>
-
-      <div class="mt-9 flex flex-wrap gap-3">
+      <div class="reveal mt-9 flex flex-wrap items-center gap-3" style="--reveal-delay: 0.18s;">
         <a class="btn btn-primary" href="/case-studies/">
           {hero.cta_primary}
           <Icon name="arrow-right" size={16} />
@@ -46,6 +54,25 @@ const { hero } = siteContent;
           {hero.cta_secondary}
         </a>
       </div>
+
+      <p class="reveal mt-8" style="--reveal-delay: 0.24s;">
+        <span class="status-pill !rounded-xl text-left leading-relaxed">
+          {hero.recruiter_pitch}
+        </span>
+      </p>
     </div>
   </div>
 </section>
+
+<style>
+  .hero-highlight {
+    background-image: linear-gradient(
+      100deg,
+      var(--color-accent-strong),
+      #9fd8ff
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+</style>
