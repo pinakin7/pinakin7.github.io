@@ -1,0 +1,655 @@
+---
+/**
+ * Animated background for a case-study page, themed per project.
+ * Pure CSS/SVG (no JS), pointer-events-none, aria-hidden, and fully
+ * disabled under prefers-reduced-motion. The leading impact metric is
+ * rendered as a slow-drifting ghost numeral so the outcome is part of
+ * the scene.
+ */
+interface Props {
+  id: string;
+  /** Leading impact metric, e.g. "45%" or "30 FPS". */
+  metric?: string;
+}
+
+const { id, metric } = Astro.props;
+
+const known = [
+  'production_edge_agentic_ai',
+  'video_rag_continuous_video_search',
+  'enterprise_ai_sprint_planning',
+  'inference_optimization_mlops',
+  'real_time_defect_detection',
+  'llm_pr_review_assistant',
+  'dcs_edge_file_sync',
+  'visitor_log_platform',
+];
+const motif = known.includes(id) ? id : 'generic';
+---
+
+<div class="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+  {metric && <span class="ghost-metric metric-num">{metric}</span>}
+
+  <svg
+    class="scene hidden md:block"
+    viewBox="0 0 520 340"
+    width="520"
+    height="340"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    {motif === 'production_edge_agentic_ai' && (
+      <g class="stroke-accent">
+        <!-- Camera viewport with corner ticks -->
+        <rect x="60" y="40" width="400" height="230" rx="10" class="faint" />
+        <path d="M60 70v-20a10 10 0 0 1 10-10h20M430 40h20a10 10 0 0 1 10 10v20M460 270h-20M90 270H70a10 10 0 0 1-10-10v-20" />
+        <!-- 30 FPS scanline sweeping the frame -->
+        <g class="scanline">
+          <line x1="0" y1="48" x2="0" y2="262" stroke-width="1.5" />
+        </g>
+        <!-- Detections appearing autonomously -->
+        <g class="bbox b1">
+          <rect x="110" y="90" width="74" height="56" rx="4" stroke-width="1.5" />
+          <rect x="110" y="78" width="30" height="10" rx="2" class="fill-soft" stroke="none" />
+        </g>
+        <g class="bbox b2">
+          <rect x="270" y="150" width="90" height="64" rx="4" stroke-width="1.5" />
+          <rect x="270" y="138" width="30" height="10" rx="2" class="fill-soft" stroke="none" />
+        </g>
+        <g class="bbox b3">
+          <rect x="180" y="190" width="60" height="48" rx="4" stroke-width="1.5" />
+          <rect x="180" y="178" width="30" height="10" rx="2" class="fill-soft" stroke="none" />
+        </g>
+        <!-- Perception → decision → action loop -->
+        <g class="faint">
+          <circle cx="130" cy="305" r="4" />
+          <circle cx="260" cy="305" r="4" />
+          <circle cx="390" cy="305" r="4" />
+          <path d="M140 305h108m14 0h108" class="dash march" />
+        </g>
+      </g>
+    )}
+
+    {motif === 'video_rag_continuous_video_search' && (
+      <g class="stroke-accent">
+        <!-- Query dot with marching-ants path down to the stream -->
+        <circle cx="96" cy="60" r="10" />
+        <path d="M96 74v40c0 12 10 22 22 22h44" class="dash march" />
+        <!-- Continuous filmstrip -->
+        <g class="faint">
+          {[0, 1, 2, 3, 4].map((i) => (
+            <rect x={70 + i * 80} y="150" width="64" height="64" rx="6" />
+          ))}
+          <line x1="60" y1="140" x2="460" y2="140" />
+          <line x1="60" y1="224" x2="460" y2="224" />
+        </g>
+        <!-- Search window sliding over frames; the match lights up -->
+        <g class="search-window">
+          <rect x="64" y="144" width="76" height="76" rx="8" stroke-width="2" />
+        </g>
+        <rect x="310" y="150" width="64" height="64" rx="6" class="fill-soft match" stroke="none" />
+        <!-- Embedding ticks under the strip -->
+        <g class="faint dash">
+          <path d="M70 260h384" />
+        </g>
+        {[0, 1, 2, 3, 4, 5, 6].map((i) => (
+          <circle cx={90 + i * 56} cy="260" r="3" class={`emb e${i % 3}`} />
+        ))}
+      </g>
+    )}
+
+    {motif === 'enterprise_ai_sprint_planning' && (
+      <g class="stroke-accent">
+        <!-- Kanban columns -->
+        {[0, 1, 2].map((i) => (
+          <g class="faint">
+            <rect x={80 + i * 130} y="60" width="104" height="220" rx="8" />
+            <line x1={92 + i * 130} y1="84" x2={144 + i * 130} y2="84" stroke-width="3" />
+          </g>
+        ))}
+        <!-- Resting cards -->
+        <g class="fill-soft" stroke="none">
+          <rect x="92" y="100" width="80" height="26" rx="4" />
+          <rect x="92" y="134" width="80" height="26" rx="4" />
+          <rect x="222" y="100" width="80" height="26" rx="4" />
+          <rect x="352" y="100" width="80" height="26" rx="4" />
+          <rect x="352" y="134" width="80" height="26" rx="4" />
+        </g>
+        <!-- The AI-prioritized card moving across the board -->
+        <g class="kanban-card">
+          <rect x="92" y="176" width="80" height="26" rx="4" stroke-width="1.5" class="fill-soft" />
+        </g>
+      </g>
+    )}
+
+    {motif === 'inference_optimization_mlops' && (
+      <g class="stroke-accent">
+        <!-- Pipeline with throughput pulses -->
+        <g class="faint">
+          <path d="M70 80h380" />
+          <rect x="60" y="66" width="28" height="28" rx="6" />
+          <rect x="432" y="66" width="28" height="28" rx="6" />
+        </g>
+        <circle cy="80" r="4" class="pulse p1 fill-accent" stroke="none" />
+        <circle cy="80" r="4" class="pulse p2 fill-accent" stroke="none" />
+        <circle cy="80" r="4" class="pulse p3 fill-accent" stroke="none" />
+        <!-- Latency bars compressing -->
+        <g class="faint">
+          <line x1="90" y1="290" x2="440" y2="290" />
+        </g>
+        {[0, 1, 2, 3, 4].map((i) => (
+          <rect
+            x={110 + i * 66}
+            y="150"
+            width="30"
+            height="140"
+            rx="4"
+            class={`latency-bar lb${i} fill-soft`}
+            stroke-width="1.5"
+          />
+        ))}
+      </g>
+    )}
+
+    {motif === 'real_time_defect_detection' && (
+      <g class="stroke-accent">
+        <!-- Sonar rings -->
+        <g class="faint">
+          <circle cx="260" cy="170" r="130" />
+          <circle cx="260" cy="170" r="88" />
+          <circle cx="260" cy="170" r="46" />
+          <line x1="260" y1="40" x2="260" y2="300" class="dash" />
+          <line x1="130" y1="170" x2="390" y2="170" class="dash" />
+        </g>
+        <!-- Rotating sweep -->
+        <g class="sweep">
+          <line x1="260" y1="170" x2="260" y2="42" stroke-width="1.5" />
+        </g>
+        <!-- Anomaly pings -->
+        <circle cx="330" cy="120" r="4" class="ping g1 fill-accent" stroke="none" />
+        <circle cx="200" cy="230" r="4" class="ping g2 fill-accent" stroke="none" />
+        <circle cx="310" cy="225" r="4" class="ping g3 fill-accent" stroke="none" />
+      </g>
+    )}
+
+    {motif === 'llm_pr_review_assistant' && (
+      <g class="stroke-accent">
+        <!-- Diff panel -->
+        <rect x="90" y="50" width="340" height="240" rx="10" class="faint" />
+        <line x1="90" y1="82" x2="430" y2="82" class="faint" />
+        <circle cx="110" cy="66" r="4" class="faint" />
+        <circle cx="126" cy="66" r="4" class="faint" />
+        <!-- Context lines -->
+        <g class="faint" stroke-width="5">
+          <line x1="114" y1="108" x2="330" y2="108" />
+          <line x1="114" y1="132" x2="290" y2="132" />
+          <line x1="114" y1="228" x2="310" y2="228" />
+          <line x1="114" y1="252" x2="270" y2="252" />
+        </g>
+        <!-- Additions typing in, deletion fading out -->
+        <line x1="114" y1="156" x2="360" y2="156" stroke-width="5" class="diff-add a1" />
+        <line x1="114" y1="180" x2="320" y2="180" stroke-width="5" class="diff-add a2" />
+        <line x1="114" y1="204" x2="300" y2="204" stroke-width="5" class="diff-del" />
+        <!-- Review cursor stepping down the diff -->
+        <g class="review-cursor">
+          <path d="M100 104l8 5-8 5z" class="fill-accent" stroke="none" />
+        </g>
+      </g>
+    )}
+
+    {motif === 'dcs_edge_file_sync' && (
+      <g class="stroke-accent">
+        <!-- Edge node and cloud node -->
+        <g class="faint">
+          <rect x="70" y="130" width="90" height="80" rx="10" />
+          <path d="M74 158h82M74 182h82" />
+          <path d="M370 176a26 26 0 0 1 8-51 34 34 0 0 1 66 8 24 24 0 0 1-4 43z" />
+        </g>
+        <!-- Sync channel -->
+        <path d="M170 152h190M170 188h190" class="dash faint" />
+        <!-- File packets in both directions -->
+        <rect y="145" width="14" height="14" rx="3" class="packet up fill-soft" stroke-width="1.5" />
+        <rect y="181" width="14" height="14" rx="3" class="packet down fill-soft" stroke-width="1.5" />
+        <!-- Integrity check pulse -->
+        <circle cx="265" cy="270" r="14" class="faint" />
+        <path d="M259 270l4 4 8-8" class="check-tick" stroke-width="2" />
+      </g>
+    )}
+
+    {motif === 'visitor_log_platform' && (
+      <g class="stroke-accent">
+        <!-- Badge card -->
+        <g class="badge">
+          <rect x="70" y="90" width="120" height="160" rx="10" class="faint" />
+          <circle cx="130" cy="140" r="22" class="faint" />
+          <path d="M92 186h76M92 208h52" class="faint" />
+        </g>
+        <!-- Live log rows appearing -->
+        <rect x="230" y="70" width="230" height="200" rx="10" class="faint" />
+        {[0, 1, 2, 3].map((i) => (
+          <g class={`log-row r${i}`}>
+            <path d={`M248 ${106 + i * 42}h130`} stroke-width="5" class="faint" />
+            <circle cx="428" cy={106 + i * 42} r="8" class="faint" />
+            <path
+              d={`M424 ${106 + i * 42}l3 3 6-6`}
+              stroke-width="1.75"
+              class="stroke-accent"
+            />
+          </g>
+        ))}
+      </g>
+    )}
+
+    {motif === 'generic' && (
+      <g class="stroke-accent">
+        <g class="faint">
+          <circle cx="150" cy="120" r="8" />
+          <circle cx="300" cy="80" r="8" />
+          <circle cx="380" cy="200" r="8" />
+          <circle cx="220" cy="240" r="8" />
+          <path d="M158 120l134-38M308 84l66 108M372 204l-144 32M214 233l-58-105" class="dash march" />
+        </g>
+        <circle cx="300" cy="80" r="14" class="ping g1" />
+        <circle cx="380" cy="200" r="14" class="ping g2" />
+      </g>
+    )}
+  </svg>
+</div>
+
+<style>
+  /* ---------- Shared ---------- */
+  .scene {
+    position: absolute;
+    top: 12px;
+    right: -36px;
+    opacity: 0.5;
+    mask-image: linear-gradient(to left, black 45%, transparent 92%);
+    -webkit-mask-image: linear-gradient(to left, black 45%, transparent 92%);
+  }
+  .stroke-accent,
+  .stroke-accent * {
+    stroke: var(--color-accent);
+  }
+  .faint,
+  .faint * {
+    stroke: var(--color-accent);
+    opacity: 0.35;
+  }
+  .fill-soft {
+    fill: var(--color-accent-soft);
+  }
+  .fill-accent {
+    fill: var(--color-accent);
+  }
+  .dash {
+    stroke-dasharray: 4 6;
+  }
+  .march {
+    animation: march 1.6s linear infinite;
+  }
+
+  .ghost-metric {
+    position: absolute;
+    top: 0.5rem;
+    right: 1.5rem;
+    font-size: clamp(4rem, 9vw, 6.5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--color-accent);
+    opacity: 0.09;
+    white-space: nowrap;
+    animation: ghost-drift 14s ease-in-out infinite alternate;
+  }
+
+  @keyframes march {
+    to {
+      stroke-dashoffset: -20;
+    }
+  }
+  @keyframes ghost-drift {
+    from {
+      transform: translateY(-8px);
+    }
+    to {
+      transform: translateY(10px);
+    }
+  }
+
+  /* ---------- Edge agentic AI ---------- */
+  .scanline {
+    animation: scan 4.5s ease-in-out infinite;
+  }
+  @keyframes scan {
+    0%, 100% {
+      transform: translateX(76px);
+    }
+    50% {
+      transform: translateX(444px);
+    }
+  }
+  .bbox {
+    opacity: 0;
+    animation: bbox-blink 7.5s ease-in-out infinite;
+  }
+  .bbox.b2 {
+    animation-delay: 2.5s;
+  }
+  .bbox.b3 {
+    animation-delay: 5s;
+  }
+  @keyframes bbox-blink {
+    0%, 38%, 100% {
+      opacity: 0;
+    }
+    6%, 30% {
+      opacity: 0.9;
+    }
+  }
+
+  /* ---------- Video-RAG ---------- */
+  .search-window {
+    animation: slide-frames 8s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+  }
+  @keyframes slide-frames {
+    0%, 8% {
+      transform: translateX(0);
+    }
+    28% {
+      transform: translateX(80px);
+    }
+    48% {
+      transform: translateX(160px);
+    }
+    68%, 90% {
+      transform: translateX(240px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  .match {
+    animation: match-glow 8s ease-in-out infinite;
+  }
+  @keyframes match-glow {
+    0%, 60%, 100% {
+      opacity: 0.25;
+    }
+    72%, 86% {
+      opacity: 1;
+    }
+  }
+  .emb {
+    fill: var(--color-accent);
+    animation: emb-pulse 3s ease-in-out infinite;
+  }
+  .emb.e1 {
+    animation-delay: 1s;
+  }
+  .emb.e2 {
+    animation-delay: 2s;
+  }
+  @keyframes emb-pulse {
+    0%, 100% {
+      opacity: 0.25;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  /* ---------- Sprint planning ---------- */
+  .kanban-card {
+    animation: kanban 9s ease-in-out infinite;
+  }
+  @keyframes kanban {
+    0%, 18% {
+      transform: translate(0, 0);
+    }
+    30%, 48% {
+      transform: translate(130px, -42px);
+    }
+    60%, 82% {
+      transform: translate(260px, -8px);
+    }
+    94%, 100% {
+      transform: translate(0, 0);
+    }
+  }
+
+  /* ---------- Inference optimization ---------- */
+  .pulse {
+    animation: pulse-x 2.6s linear infinite;
+  }
+  .pulse.p2 {
+    animation-delay: 0.85s;
+  }
+  .pulse.p3 {
+    animation-delay: 1.7s;
+  }
+  @keyframes pulse-x {
+    from {
+      transform: translateX(88px);
+      opacity: 0;
+    }
+    12% {
+      opacity: 0.9;
+    }
+    88% {
+      opacity: 0.9;
+    }
+    to {
+      transform: translateX(432px);
+      opacity: 0;
+    }
+  }
+  .latency-bar {
+    transform-origin: center 290px;
+    animation: compress 5.5s ease-in-out infinite;
+  }
+  .latency-bar.lb1 {
+    animation-delay: 0.3s;
+  }
+  .latency-bar.lb2 {
+    animation-delay: 0.6s;
+  }
+  .latency-bar.lb3 {
+    animation-delay: 0.9s;
+  }
+  .latency-bar.lb4 {
+    animation-delay: 1.2s;
+  }
+  @keyframes compress {
+    0%, 15% {
+      transform: scaleY(1);
+    }
+    55%, 75% {
+      transform: scaleY(0.4);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+
+  /* ---------- Defect detection ---------- */
+  .sweep {
+    transform-origin: 260px 170px;
+    animation: sweep-rotate 6s linear infinite;
+  }
+  @keyframes sweep-rotate {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .ping {
+    animation: ping-fade 6s linear infinite;
+  }
+  .ping.g2 {
+    animation-delay: 2.6s;
+  }
+  .ping.g3 {
+    animation-delay: 4.4s;
+  }
+  @keyframes ping-fade {
+    0%, 100% {
+      opacity: 0.15;
+    }
+    8% {
+      opacity: 1;
+    }
+    40% {
+      opacity: 0.15;
+    }
+  }
+
+  /* ---------- PR review ---------- */
+  .diff-add {
+    stroke: var(--color-signal);
+    opacity: 0.55;
+    transform-origin: 114px center;
+    animation: type-in 7s ease-out infinite;
+  }
+  .diff-add.a2 {
+    animation-delay: 1.2s;
+  }
+  @keyframes type-in {
+    0% {
+      transform: scaleX(0);
+    }
+    18%, 88% {
+      transform: scaleX(1);
+    }
+    100% {
+      transform: scaleX(0);
+    }
+  }
+  .diff-del {
+    stroke: #f87171;
+    animation: strike-out 7s ease-in-out infinite;
+  }
+  @keyframes strike-out {
+    0%, 30% {
+      opacity: 0.5;
+    }
+    55%, 88% {
+      opacity: 0.12;
+    }
+    100% {
+      opacity: 0.5;
+    }
+  }
+  .review-cursor {
+    animation: cursor-step 7s steps(1) infinite;
+  }
+  @keyframes cursor-step {
+    0% {
+      transform: translateY(0);
+    }
+    16% {
+      transform: translateY(24px);
+    }
+    32% {
+      transform: translateY(48px);
+    }
+    48% {
+      transform: translateY(72px);
+    }
+    64% {
+      transform: translateY(96px);
+    }
+    80% {
+      transform: translateY(120px);
+    }
+  }
+
+  /* ---------- Edge file sync ---------- */
+  .packet {
+    animation: packet-x 3.4s ease-in-out infinite;
+  }
+  .packet.up {
+    animation-delay: 0s;
+  }
+  .packet.down {
+    animation-delay: 1.7s;
+    animation-direction: reverse;
+  }
+  @keyframes packet-x {
+    from {
+      transform: translateX(172px);
+      opacity: 0;
+    }
+    12% {
+      opacity: 1;
+    }
+    88% {
+      opacity: 1;
+    }
+    to {
+      transform: translateX(344px);
+      opacity: 0;
+    }
+  }
+  .check-tick {
+    animation: tick-pulse 3.4s ease-in-out infinite;
+  }
+  @keyframes tick-pulse {
+    0%, 100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  /* ---------- Visitor log ---------- */
+  .badge {
+    animation: badge-pulse 6s ease-in-out infinite;
+  }
+  @keyframes badge-pulse {
+    0%, 100% {
+      opacity: 0.7;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  .log-row {
+    opacity: 0;
+    animation: row-in 8s ease-out infinite;
+  }
+  .log-row.r1 {
+    animation-delay: 1.4s;
+  }
+  .log-row.r2 {
+    animation-delay: 2.8s;
+  }
+  .log-row.r3 {
+    animation-delay: 4.2s;
+  }
+  @keyframes row-in {
+    0% {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    8%, 82% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    94%, 100% {
+      opacity: 0;
+    }
+  }
+
+  /* ---------- Motion off ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    .scene *,
+    .ghost-metric {
+      animation: none !important;
+    }
+    .bbox,
+    .log-row {
+      opacity: 0.7;
+    }
+  }
+</style>

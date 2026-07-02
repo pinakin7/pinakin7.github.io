@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
+import CaseStudyBackdrop from '../../components/CaseStudyBackdrop.astro';
 
 export async function getStaticPaths() {
   const studies = await getCollection('caseStudies');
@@ -20,6 +21,9 @@ function splitMetric(point: string): { value: string; label: string } {
   return { value: '', label: point };
 }
 const metrics = study.impact.map(splitMetric);
+// First numeric impact value ("45%", "30 FPS") feeds the animated backdrop.
+// Bare single digits are skipped — "3" alone reads as noise, "45%" reads as impact.
+const ghostMetric = metrics.find((m) => m.value.length >= 2)?.value;
 ---
 
 <BaseLayout
@@ -28,7 +32,11 @@ const metrics = study.impact.map(splitMetric);
   path={`/case-studies/${study.id}/`}
   ogType="article"
 >
-  <article class="container-page py-12 sm:py-16">
+  <article class="relative container-page py-12 sm:py-16">
+    <!-- Project-themed motion backdrop behind the header area only -->
+    <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[380px]">
+      <CaseStudyBackdrop id={study.id} metric={ghostMetric} />
+    </div>
     <a
       href="/case-studies/"
       class="group inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
