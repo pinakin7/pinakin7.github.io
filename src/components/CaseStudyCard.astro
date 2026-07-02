@@ -10,35 +10,47 @@ interface Props {
     impact: string[];
     skills: string[];
   };
+  /** 0-based position in the list — rendered as a mono index ("01"). */
+  index?: number;
 }
 
-const { study } = Astro.props;
+const { study, index } = Astro.props;
+const indexLabel =
+  index === undefined ? undefined : String(index + 1).padStart(2, '0');
 ---
 
 <a
   href={`/case-studies/${study.id}/`}
-  class="card group flex h-full flex-col"
+  class="card card-hover group reveal flex h-full flex-col"
+  style={index !== undefined ? `--reveal-delay: ${(index % 3) * 0.07}s;` : undefined}
   aria-label={`Read case study: ${study.title}`}
 >
-  <p class="eyebrow">{study.category}</p>
+  <div class="flex items-start justify-between gap-4">
+    <p class="eyebrow">{study.category}</p>
+    {indexLabel && (
+      <span class="metric-num text-xs" style="color: var(--color-muted);" aria-hidden="true">
+        {indexLabel}
+      </span>
+    )}
+  </div>
 
   <h3
-    class="mt-3 text-lg font-bold leading-snug tracking-tight"
+    class="mt-3.5 text-lg font-semibold leading-snug tracking-tight"
     style="color: var(--color-ink);"
   >
     {study.title}
   </h3>
 
-  <p class="mt-2 text-sm leading-relaxed" style="color: var(--color-ink-soft);">
+  <p class="mt-2 text-sm leading-relaxed" style="color: var(--color-muted);">
     {study.one_liner}
   </p>
 
-  <ul class="mt-4 space-y-1.5">
+  <ul class="mt-5 space-y-2">
     {
       study.impact.slice(0, 3).map((item) => (
-        <li class="flex items-start gap-2 text-sm" style="color: var(--color-ink-soft);">
-          <span style="color: var(--color-accent);" class="mt-0.5 shrink-0">
-            <Icon name="check" size={15} />
+        <li class="flex items-start gap-2.5 text-sm" style="color: var(--color-ink-soft);">
+          <span style="color: var(--color-signal);" class="mt-[3px] shrink-0">
+            <Icon name="check" size={14} />
           </span>
           <span>{item}</span>
         </li>
@@ -51,10 +63,12 @@ const { study } = Astro.props;
   </div>
 
   <span
-    class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold transition-transform group-hover:translate-x-0.5"
+    class="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-semibold transition-colors"
     style="color: var(--color-accent);"
   >
     Read case study
-    <Icon name="arrow-right" size={16} />
+    <span class="transition-transform duration-200 group-hover:translate-x-1">
+      <Icon name="arrow-right" size={15} />
+    </span>
   </span>
 </a>
