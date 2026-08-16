@@ -50,7 +50,7 @@
   "hero": {
     "eyebrow": "AI Systems Engineer • Agentic AI • Edge/Video AI • ML Infrastructure • Product Ownership",
     "headline": "I build production-grade AI systems that connect models, infrastructure, and business workflows.",
-    "subheadline": "Machine Learning Engineer focused on agentic AI systems, Video-RAG, real-time edge inference, and MLOps — and the product manager who took an edge AI mining-safety product from zero to one across safety-critical and enterprise environments.",
+    "subheadline": "Machine Learning Engineer working on agentic AI systems, multimodal retrieval, real-time edge inference, and MLOps, and the product manager who took a safety-critical AI product from zero to one.",
     "cta_primary": "View Case Studies",
     "cta_secondary": "Get in Touch",
     "recruiter_pitch": "Open to AI/ML, GenAI, ML Systems, Computer Vision, Edge AI, MLOps, and Applied AI Consulting roles.",
@@ -64,8 +64,8 @@
     ]
   },
   "about": {
-    "short": "I am a Machine Learning Engineer with a University of Toronto MScAC background, building production AI systems across edge devices, cloud infrastructure, multimodal retrieval, and agentic workflows — and owning products end to end, from client discovery through market entry.",
-    "full": "I work at the intersection of machine learning, systems engineering, and product ownership. My recent work includes real-time agentic AI systems on NVIDIA Jetson AGX, Video-RAG pipelines for live video streams, GPU-optimized inference with ONNX/TensorRT/CUDA/GStreamer, and MLOps workflows using MLflow, Docker, AWS, Git, and CI/CD. Alongside the engineering, I took BeltIQ — an edge AI mining-safety product — from zero to one as its product manager, owning discovery, roadmap, vendor procurement, and market-entry strategy. I care about systems that are reliable, measurable, maintainable, and useful to real teams—not just prototypes."
+    "short": "I am a Machine Learning Engineer with a University of Toronto MScAC background. I build production AI systems across edge devices, cloud infrastructure, multimodal retrieval, and agentic workflows, and I have owned a product end to end, from client discovery through market entry.",
+    "full": "I work at the intersection of machine learning, systems engineering, and product ownership. Recent work includes real-time agentic AI on embedded hardware, multimodal retrieval over live video, GPU-optimized inference with ONNX, TensorRT, CUDA and GStreamer, and the MLOps around all of it. Alongside the engineering, I took BeltIQ from zero to one as its product manager, which meant owning discovery, the roadmap, vendor procurement, and the market-entry strategy. What I care about is systems that are reliable, measurable, maintainable, and genuinely useful to the teams running them, rather than prototypes that demo well."
   },
   "experience": [
     {
@@ -73,7 +73,7 @@
       "role": "Product Manager, BeltIQ",
       "dates": "Jan 2025 – Present",
       "theme": "Zero-to-one product ownership for an edge AI mining-safety product",
-      "summary": "Took BeltIQ from concept to a deployed product — owning discovery, roadmap, market-entry strategy, vendor procurement, and delivery across engineering, hardware, and client stakeholders.",
+      "summary": "Took BeltIQ from concept to a deployed product, owning discovery, the roadmap, market-entry strategy, vendor procurement, and delivery across engineering, hardware, and client stakeholders.",
       "highlights": [
         "Built BeltIQ from zero to one, defining the product thesis, the initial feature set, and the market-entry strategy for an edge AI mining-safety product in a market with no incumbent equivalent.",
         "Ran client requirements gathering directly with site operators and decision-makers, converting operational pain points and safety obligations into a prioritized specification engineering could build against.",
@@ -81,7 +81,7 @@
         "Prepared and delivered the sales pitch deck and product narrative used in client and executive conversations, translating edge AI capability into operational and commercial outcomes buyers could evaluate.",
         "Owned vendor management and procurement for edge compute, cameras, and site-installation hardware, sequencing purchasing against hardware lead times so deployment dates held.",
         "Drove feature planning and cross-team execution across ML, software, hardware, and field-deployment teams, maintaining a single roadmap all four worked from.",
-        "Acted as the communication layer between client stakeholders and engineering — surfacing tradeoffs, scope changes, and deployment expectations early enough to be decisions rather than escalations."
+        "Acted as the communication layer between client stakeholders and engineering, surfacing tradeoffs, scope changes, and deployment expectations early enough that they stayed decisions rather than becoming escalations."
       ],
       "tags": [
         "Product Strategy",
@@ -166,12 +166,11 @@
   ],
   "case_studies_order": [
     "production_edge_agentic_ai",
-    "video_rag_continuous_video_search",
     "enterprise_ai_sprint_planning",
     "inference_optimization_mlops",
     "real_time_defect_detection",
     "llm_pr_review_assistant",
-    "dcs_edge_file_sync",
+    "edge_cloud_file_sync",
     "visitor_log_platform",
     "coordination_substrate_program",
     "llm_eval_cost_optimization",
