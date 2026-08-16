@@ -144,7 +144,9 @@
     "real_time_defect_detection",
     "llm_pr_review_assistant",
     "dcs_edge_file_sync",
-    "visitor_log_platform"
+    "visitor_log_platform",
+    "coordination_substrate_program",
+    "llm_eval_cost_optimization"
   ],
   "skills": {
     "ai_ml_genai": [
