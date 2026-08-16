@@ -392,5 +392,51 @@
       "Living-context growth: unbounded append-only vs. capped with compaction"
     ],
     "recruiter_angle": "Directly relevant to GenAI and applied-ML roles — builds the quality measurement layer most LLM systems lack, then uses it to make cost decisions with the tradeoff quantified rather than assumed."
+  },
+  {
+    "id": "beltiq_zero_to_one",
+    "title": "BeltIQ — Taking an Edge AI Safety Product From Zero to One",
+    "category": "Product Management + Zero-to-One Delivery",
+    "priority": 11,
+    "homepage_featured": false,
+    "one_liner": "Owned BeltIQ as product manager from a site observation to a deployed product — turning an open-ended safety problem into a sequenced roadmap, a hardware supply chain, and a market-entry story a buyer could evaluate.",
+    "problem": "\"Make the conveyor belt safer\" is a mandate, not a specification. Belt failures at a mine site are expensive and dangerous, but the operators experiencing them described symptoms — a spill nobody caught, a misalignment found on the next walk-around — not requirements. There was no product to sell, no reference deployment to point at, and no obvious first slice: the problem could plausibly start at any of a dozen failure modes, each implying different cameras, different mounting, different compute, and a different buyer conversation. Compounding it, the work spanned ML, software, hardware, and field deployment teams with no shared plan between them, and the hardware those teams depended on had procurement lead times measured in weeks — long enough that a scoping mistake made in month one would not surface as a schedule problem until month three.",
+    "solution": "Started with discovery rather than architecture: sat with site operators and decision-makers to separate what actually hurt from what was merely annoying, and used that to pick a first failure mode narrow enough to build against and severe enough to justify a purchase. Broke the resulting problem into thin vertical slices — each one a working end-to-end path from camera to alert rather than a horizontal layer — so every increment produced something a client could watch running on their own site instead of deferring all value to a single launch. Laid the slices onto a technical roadmap with an explicit execution plan, then ran hardware selection and vendor procurement against that sequence so lead times were absorbed by the plan rather than discovered by it. Built the pitch deck and product narrative in parallel with the build, which forced the positioning and the market-entry strategy to be decided while they could still change what got built, not after.",
+    "impact": [
+      "Zero to one — from site observation to a deployed product on a live mine site",
+      "One roadmap shared across ML, software, hardware, and field-deployment teams",
+      "Market-entry strategy and pitch narrative defined before first client demo",
+      "Hardware selection and procurement sequenced against delivery milestones"
+    ],
+    "technical_details": [
+      "Requirements gathered from operators in the language of their workflow — what they walk past, what they check, what they escalate — then translated into detection targets, latency tolerances, and false-alarm budgets engineering could actually design against; an alert nobody trusts is worse than no alert, so the acceptable false-positive rate was treated as a product requirement rather than a model metric",
+      "Scope decomposed into thin vertical slices rather than horizontal layers, so the first shippable increment ran the full path — camera, on-device inference, alert, operator response — on real site hardware, which surfaced mounting, lighting, network, and power problems while they were still cheap to fix",
+      "Roadmap sequenced so that the longest-lead-time item in each phase started first, with hardware procurement, site-access scheduling, and model development running as parallel tracks with named join points instead of a serial chain where any slip propagated to the whole plan",
+      "Vendor management run as an evaluated selection rather than a purchase order: edge compute, cameras, and installation hardware assessed against the real deployment constraint — an industrial box on a remote site with no on-site operator, where a component failure costs a truck roll — with a second source identified for the parts on the critical path",
+      "Feature planning driven by what changed an operator's decision, not by what was technically interesting: capabilities that produced information nobody would act on were explicitly deferred, and that deferral was written down with its reasoning so it did not get relitigated every planning cycle",
+      "Client and executive communication run on a cadence that surfaced tradeoffs and scope changes while they were still decisions — a shifted date raised in advance with options attached lands as a plan, and the same date raised late lands as an escalation",
+      "Sales pitch deck built around the operational outcome rather than the model architecture, framing edge AI capability in terms a buyer evaluates — incidents caught, manual monitoring hours displaced, and what the system costs to run unattended on their site"
+    ],
+    "skills": [
+      "Product Strategy",
+      "Zero-to-One Product Development",
+      "Client Discovery",
+      "Requirements Gathering",
+      "Product Roadmapping",
+      "Feature Prioritization",
+      "Go-to-Market Strategy",
+      "Vendor Management",
+      "Hardware Procurement",
+      "Cross-Functional Leadership",
+      "Executive Communication",
+      "Sales Enablement"
+    ],
+    "suggested_visuals": [
+      "Discovery to specification: operator symptoms → failure modes → detection targets with false-alarm budgets",
+      "Thin vertical slices vs. horizontal layers: what each increment put in front of the client",
+      "Roadmap with parallel tracks — procurement, site access, model development — and their join points",
+      "Vendor evaluation matrix against the unattended-remote-site constraint, with critical-path second sourcing"
+    ],
+    "recruiter_angle": "Product ownership backed by the ability to build the thing — discovery, roadmap, procurement, and go-to-market for a physical-world AI product, with the engineering judgment to know which slice is actually shippable first. Relevant to AI product management, founding-engineer, and forward-deployed roles where the same person has to talk to the client and scope the build."
   }
 ]
