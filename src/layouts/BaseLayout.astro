@@ -63,7 +63,7 @@ const { title, description, keywords, path, ogType, personSchema } =
     <script>
       const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      // Reveal on scroll — stagger via --reveal-delay set per element.
+      // Reveal on scroll; stagger via --reveal-delay set per element.
       const revealed = document.querySelectorAll<HTMLElement>('.reveal');
       if (reduced || !('IntersectionObserver' in window)) {
         revealed.forEach((el) => el.classList.add('is-visible'));
