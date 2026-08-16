@@ -13,26 +13,26 @@
   --font-mono: "JetBrains Mono Variable", ui-monospace, "SF Mono", Menlo,
     monospace;
 
-  /* Surfaces — cool near-black, stepped elevation */
+  /* Surfaces: cool near-black, stepped elevation */
   --color-canvas: #0a0a0e;
   --color-surface: #101018;
   --color-surface-2: #16161f;
 
-  /* Ink — high-contrast neutral scale */
+  /* Ink: high-contrast neutral scale */
   --color-ink: #f2f2f7;
   --color-ink-soft: #b8bac6;
   --color-muted: #83859a;
 
-  /* Lines — alpha hairlines so they sit on any surface */
+  /* Lines: alpha hairlines so they sit on any surface */
   --color-line: rgba(147, 151, 175, 0.16);
   --color-line-strong: rgba(147, 151, 175, 0.3);
 
-  /* Accent — electric indigo, tuned for dark backgrounds */
+  /* Accent: electric indigo, tuned for dark backgrounds */
   --color-accent: #8b93ff;
   --color-accent-strong: #aab0ff;
   --color-accent-soft: rgba(139, 147, 255, 0.11);
 
-  /* Signal — status/positive (the "live" dot, checkmarks) */
+  /* Signal: status/positive (the "live" dot, checkmarks) */
   --color-signal: #55d992;
 
   --radius-card: 0.875rem;
@@ -130,7 +130,7 @@ html.js .reveal.is-visible {
     @apply mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8;
   }
 
-  /* Mono label layer — eyebrows, indices, dates, metrics */
+  /* Mono label layer: eyebrows, indices, dates, metrics */
   .eyebrow {
     font-family: var(--font-mono);
     @apply text-[0.6875rem] font-medium uppercase tracking-[0.16em];
@@ -164,7 +164,7 @@ html.js .reveal.is-visible {
     transition: border-color 0.2s ease, color 0.2s ease;
   }
 
-  /* Buttons — white primary (highest-contrast action on dark),
+  /* Buttons: white primary (highest-contrast action on dark),
      quiet bordered secondary. Accent is reserved for links/labels. */
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold;
@@ -257,7 +257,7 @@ html.js .reveal.is-visible {
     animation: pulse-dot 2.4s ease-in-out infinite;
   }
 
-  /* Section band — alternating full-bleed backdrop */
+  /* Section band: alternating full-bleed backdrop */
   .band {
     @apply border-y;
     border-color: var(--color-line);
