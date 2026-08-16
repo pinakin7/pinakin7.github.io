@@ -16,12 +16,11 @@ const { id, metric } = Astro.props;
 
 const known = [
   'production_edge_agentic_ai',
-  'video_rag_continuous_video_search',
   'enterprise_ai_sprint_planning',
   'inference_optimization_mlops',
   'real_time_defect_detection',
   'llm_pr_review_assistant',
-  'dcs_edge_file_sync',
+  'edge_cloud_file_sync',
   'visitor_log_platform',
   'coordination_substrate_program',
   'llm_eval_cost_optimization',
@@ -64,41 +63,13 @@ const motif = known.includes(id) ? id : 'generic';
           <rect x="180" y="190" width="60" height="48" rx="4" stroke-width="1.5" />
           <rect x="180" y="178" width="30" height="10" rx="2" class="fill-soft" stroke="none" />
         </g>
-        <!-- Perception → decision → action loop -->
+        <!-- Searchable history: everything it has already seen, one moment retrieved -->
         <g class="faint">
-          <circle cx="130" cy="305" r="4" />
-          <circle cx="260" cy="305" r="4" />
-          <circle cx="390" cy="305" r="4" />
-          <path d="M140 305h108m14 0h108" class="dash march" />
-        </g>
-      </g>
-    )}
-
-    {motif === 'video_rag_continuous_video_search' && (
-      <g class="stroke-accent">
-        <!-- Query dot with marching-ants path down to the stream -->
-        <circle cx="96" cy="60" r="10" />
-        <path d="M96 74v40c0 12 10 22 22 22h44" class="dash march" />
-        <!-- Continuous filmstrip -->
-        <g class="faint">
-          {[0, 1, 2, 3, 4].map((i) => (
-            <rect x={70 + i * 80} y="150" width="64" height="64" rx="6" />
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <rect x={116 + i * 50} y="292" width="40" height="30" rx="4" />
           ))}
-          <line x1="60" y1="140" x2="460" y2="140" />
-          <line x1="60" y1="224" x2="460" y2="224" />
         </g>
-        <!-- Search window sliding over frames; the match lights up -->
-        <g class="search-window">
-          <rect x="64" y="144" width="76" height="76" rx="8" stroke-width="2" />
-        </g>
-        <rect x="310" y="150" width="64" height="64" rx="6" class="fill-soft match" stroke="none" />
-        <!-- Embedding ticks under the strip -->
-        <g class="faint dash">
-          <path d="M70 260h384" />
-        </g>
-        {[0, 1, 2, 3, 4, 5, 6].map((i) => (
-          <circle cx={90 + i * 56} cy="260" r="3" class={`emb e${i % 3}`} />
-        ))}
+        <rect x="266" y="292" width="40" height="30" rx="4" class="fill-soft match" stroke="none" />
       </g>
     )}
 
@@ -201,7 +172,7 @@ const motif = known.includes(id) ? id : 'generic';
       </g>
     )}
 
-    {motif === 'dcs_edge_file_sync' && (
+    {motif === 'edge_cloud_file_sync' && (
       <g class="stroke-accent">
         <!-- Edge node and cloud node -->
         <g class="faint">
@@ -330,7 +301,7 @@ const motif = known.includes(id) ? id : 'generic';
           <path d="M240 196l-28 48M262 196l28 48" />
         </g>
 
-        <!-- The conveyor itself — zero to one, running on a live site -->
+        <!-- The conveyor itself: zero to one, running on a live site -->
         <g class="faint">
           <circle cx="88" cy="268" r="22" />
           <circle cx="440" cy="268" r="22" />
@@ -447,27 +418,7 @@ const motif = known.includes(id) ? id : 'generic';
     }
   }
 
-  /* ---------- Video-RAG ---------- */
-  .search-window {
-    animation: slide-frames 8s cubic-bezier(0.45, 0, 0.25, 1) infinite;
-  }
-  @keyframes slide-frames {
-    0%, 8% {
-      transform: translateX(0);
-    }
-    28% {
-      transform: translateX(80px);
-    }
-    48% {
-      transform: translateX(160px);
-    }
-    68%, 90% {
-      transform: translateX(240px);
-    }
-    100% {
-      transform: translateX(0);
-    }
-  }
+  /* ---------- Retrieved moment ---------- */
   .match {
     animation: match-glow 8s ease-in-out infinite;
   }
@@ -477,24 +428,6 @@ const motif = known.includes(id) ? id : 'generic';
     }
     72%, 86% {
       opacity: 1;
-    }
-  }
-  .emb {
-    fill: var(--color-accent);
-    animation: emb-pulse 3s ease-in-out infinite;
-  }
-  .emb.e1 {
-    animation-delay: 1s;
-  }
-  .emb.e2 {
-    animation-delay: 2s;
-  }
-  @keyframes emb-pulse {
-    0%, 100% {
-      opacity: 0.25;
-    }
-    50% {
-      opacity: 0.8;
     }
   }
 
