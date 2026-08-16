@@ -308,5 +308,89 @@
       "Per-area AUD token-scoping diagram"
     ],
     "recruiter_angle": "Strong end-to-end full-stack case study — a horizontally scalable multi-site platform with low-latency kiosk UX and zero-trust security (signed credentials, encrypted PII, per-area token scoping), architected and shipped solo to v1.0.0."
+  },
+  {
+    "id": "coordination_substrate_program",
+    "title": "Coordination Substrate — One Decision, Three Production Systems",
+    "category": "Distributed Systems + Platform Architecture",
+    "priority": 9,
+    "homepage_featured": false,
+    "one_liner": "Inherited five production systems, three of them pinned to a single worker for the same underlying reason — designed one Postgres-native coordination substrate, applied it across all three, and deliberately did not apply it to the fourth.",
+    "problem": "Three production systems could not run more than one worker, each for what looked locally like a separate reason: in-process singleton daemons (crash recovery, cron scheduling, budget reconciliation) sitting behind a boot guard that actively refused multi-worker startup; an in-memory task queue that lost every in-flight batch on a routine deploy; and a process-local event hub that fanned out only to subscribers connected to that same process. Treated separately they were three scaling projects needing three sets of new infrastructure, and none of the three had a baseline measurement, so none could be changed safely.",
+    "solution": "Audited every piece of in-process state across the systems and classified it five ways — singleton jobs, fan-out, shared ephemeral state, durable work, and benign duplication that needed no coordination at all — which established that one substrate covered the real cases and that several apparent problems needed nothing done to them. Chose Postgres-native primitives over Redis and managed queues because all three systems already ran Postgres and one ships to an on-premise industrial box with no on-site operator, where an additional service is a permanent operational cost rather than a one-time setup. Built leader election, durable queueing, and fan-out on that substrate, proved each independently, then removed the single-worker guards and re-ran the capacity benchmarks unchanged.",
+    "impact": [
+      "3 production systems unpinned from a single worker",
+      "100% in-flight task survival across restart, up from 0%",
+      "10 architecture decision records authored with rejected alternatives",
+      "5 production systems audited and state-classified"
+    ],
+    "technical_details": [
+      "Leader election on Postgres advisory locks held on a dedicated connection outside the pool — a pooled connection returned to the pool silently releases the lock and lets two workers run the same scheduler, so the holder runs a supervision loop that re-acquires after network blips while non-holders retry on a bounded cadence for predictable failover",
+      "Durable work queue on a jobs table consumed with SELECT … FOR UPDATE SKIP LOCKED so workers never block each other, with attempt-counted exponential backoff persisted in the row rather than in memory, and a reaper that reclaims work from a worker that died mid-task",
+      "Fan-out via LISTEN/NOTIFY on a per-tenant channel, viable specifically because the frontend already treats an event as a cache-invalidation hint rather than as data — so payloads stay a bare identifier and a missed notification degrades to slightly stale data instead of lost data",
+      "A deliberate boundary on the pattern: token-level streaming is high-frequency and stateful, so it uses sticky routing that pins a turn to its executing worker and scales across threads, rather than being forced through a notification channel that is the wrong instrument for it",
+      "Shared ephemeral state resolved by measurement rather than reflex — process-local rate-limit counters meant N workers enforced N times the configured limit, but measured traffic was low enough that a Postgres counter table with periodic cleanup was sufficient, and the metrics registry was deliberately left per-worker and scraped separately since multi-process aggregation modes are more fragile than the standard answer",
+      "Single-worker guards removed only after each mechanism was independently proven, then benchmarks re-run unchanged in the same harness on the same data — including behaviour under worker failure, with failover tested by killing processes rather than mocking them"
+    ],
+    "skills": [
+      "PostgreSQL",
+      "Distributed Systems",
+      "Leader Election",
+      "Work Queues",
+      "Python",
+      "System Architecture",
+      "Benchmarking",
+      "Architecture Decision Records"
+    ],
+    "suggested_visuals": [
+      "In-process state classification: five classes across three systems, including what needed nothing",
+      "Advisory-lock leader election with failover on holder death",
+      "Job lifecycle under SKIP LOCKED: claim → process → terminal, with reaper reclaim",
+      "Substrate decision matrix: Postgres-native vs. Redis vs. managed, against the on-premise constraint"
+    ],
+    "recruiter_angle": "Senior-level systems judgment rather than feature delivery — one architectural decision amortized across three production systems, an explicit and defended boundary where the pattern did not fit, and changes gated on measurement rather than assumption."
+  },
+  {
+    "id": "llm_eval_cost_optimization",
+    "title": "Making Two LLM Systems Measurable — Then Cheaper",
+    "category": "LLM Systems + Evaluation & Cost Optimization",
+    "priority": 10,
+    "homepage_featured": false,
+    "one_liner": "Two production LLM systems had precise cost observability and no quality observability at all — built evaluation harnesses for both, then used them to gate cost reductions that would otherwise have silently degraded the product.",
+    "problem": "One platform could report exactly what an agent run cost and nothing whatsoever about whether the output was any good, so no prompt or model change could be validated except by inspection. The other ranked candidates using scoring weights that were unmeasured guesses, and its largest available cost saving — cascading so the expensive model only ever sees a shortlist — would have handed the cheap prefilter authority over which candidates the strong model was allowed to see. That is precisely the failure the hybrid design existed to prevent, and nothing in either system could tell you whether shipping it would be free or actively harmful.",
+    "solution": "Split evaluation into two kinds of check that need different treatment: deterministic contract conformance, which has unambiguous answers and can gate CI hard, and rubric-scored quality, which is noisy and gates on a threshold plus human sign-off. Built the ranking evaluation set out of ground truth the organization already had and had never used — its own hiring outcomes, which are a labelled relevance set — and used it to replace guessed scoring weights with measured ones. Only then ran the cost work, with every optimization recording before and after in the same harness and stating the quality tradeoff alongside the saving.",
+    "impact": [
+      "2 LLM systems moved from cost-only to quality observability",
+      "5 deterministic contract checks gating every prompt and model-route change",
+      "4 ranking metrics measured against real hiring outcomes",
+      "1 unbounded prompt-growth defect found and bounded"
+    ],
+    "technical_details": [
+      "Deterministic contract checks — schema validity, tool-call allowlist, secret-access contract, budget cap, and terminal-state reachability — block a merge outright, while quality regression beyond a threshold requires explicit human sign-off instead, because a hard gate on a noisy metric only trains people to bypass the gate",
+      "Ranking evaluation set built from hiring outcomes as a labelled relevance set, deliberately excluding rankings produced before the ranker was replaced — those are invalid, and building on them would have silently invalidated every downstream cost conclusion in a way that stays invisible until much later",
+      "Recall@k chosen as the primary metric over precision, because a screening tool's catastrophic failure is a strong candidate never appearing in the shortlist at all — which nobody ever discovers — whereas an over-ranked mediocre candidate is caught by a human in the interview",
+      "Cascade ranking gated on the measured recall@K of the cheap first pass rather than on the obvious call-count saving, with K set above the operator's shortlist size so the marginal calls buy protection against prefilter error, and a two-tier model cascade held in reserve for the case where lexical recall proved too low to prefilter on safely",
+      "Escalation economics computed explicitly before shipping: with a cheap model at cost c, a strong model at s, and cheap-model success rate p, default-cheap-escalate-on-failure only wins when p > c/s — since a failed cheap call followed by a strong call costs strictly more than the strong call alone",
+      "Found and bounded an unbounded prompt-growth defect: approved data-tier proposals were appended to a living-context store injected into every system prompt, with no size cap and no compaction, so each approval permanently raised cost and latency for every future turn while progressively diluting the instructions that mattered — fixed with a cap plus compaction, and by surfacing context size in the approval interface so the cost is visible to the person creating it",
+      "Prompt prefixes restructured so stable content (system prompts, contract descriptions, skill definitions) precedes the variable portion, which is what makes a prefix eligible for provider-side caching at all — applies to every call with no quality tradeoff"
+    ],
+    "skills": [
+      "LLM Evaluation",
+      "Information Retrieval",
+      "Recall@K / NDCG",
+      "Model Routing",
+      "Prompt Caching",
+      "Cost Optimization",
+      "Python",
+      "CI/CD",
+      "Applied ML"
+    ],
+    "suggested_visuals": [
+      "Cascade ranking: N candidates → cheap pass → top K → strong model, with the recall@K gate",
+      "Evaluation split: deterministic contract checks (hard CI gate) vs. rubric quality checks (threshold + sign-off)",
+      "Escalation break-even: where p > c/s makes default-cheap actually cheaper",
+      "Living-context growth: unbounded append-only vs. capped with compaction"
+    ],
+    "recruiter_angle": "Directly relevant to GenAI and applied-ML roles — builds the quality measurement layer most LLM systems lack, then uses it to make cost decisions with the tradeoff quantified rather than assumed."
   }
 ]
