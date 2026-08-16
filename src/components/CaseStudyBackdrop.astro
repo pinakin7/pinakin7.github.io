@@ -23,6 +23,8 @@ const known = [
   'llm_pr_review_assistant',
   'dcs_edge_file_sync',
   'visitor_log_platform',
+  'coordination_substrate_program',
+  'llm_eval_cost_optimization',
 ];
 const motif = known.includes(id) ? id : 'generic';
 ---
@@ -238,6 +240,63 @@ const motif = known.includes(id) ? id : 'generic';
             />
           </g>
         ))}
+      </g>
+    )}
+
+    {motif === 'coordination_substrate_program' && (
+      <g class="stroke-accent">
+        <!-- Three workers, all reaching for the same lock -->
+        <g class="faint">
+          <rect x="56" y="62" width="104" height="66" rx="10" />
+          <rect x="56" y="139" width="104" height="66" rx="10" />
+          <rect x="56" y="216" width="104" height="66" rx="10" />
+          <path d="M76 86h64M76 104h40M76 163h64M76 181h40M76 240h64M76 258h40" />
+        </g>
+        <!-- Shared Postgres substrate -->
+        <g class="faint">
+          <ellipse cx="404" cy="112" rx="52" ry="15" />
+          <path d="M352 112v112a52 15 0 0 0 104 0V112M352 168a52 15 0 0 0 104 0" />
+        </g>
+        <!-- Contention: every worker attempts, one acquires -->
+        <path
+          d="M160 95C248 95 266 138 352 146M160 172h192M160 249C248 249 266 206 352 198"
+          class="dash march faint"
+        />
+        <circle cx="108" cy="95" r="16" class="ping g1" />
+        <!-- The lock, held on exactly one connection -->
+        <g>
+          <rect x="222" y="80" width="20" height="15" rx="3" class="fill-soft" stroke-width="1.5" />
+          <path d="M225.5 80v-5a6.5 6.5 0 0 1 13 0v5" stroke-width="1.5" />
+        </g>
+        <circle cx="404" cy="252" r="14" class="ping g2" />
+      </g>
+    )}
+
+    {motif === 'llm_eval_cost_optimization' && (
+      <g class="stroke-accent">
+        <!-- N candidates entering the cheap first pass -->
+        <g class="faint">
+          {[0, 1, 2, 3, 4, 5, 6].map((i) => (
+            <rect x="52" y={62 + i * 30} width="72" height="16" rx="3" />
+          ))}
+        </g>
+        <path d="M124 92h26M124 152h26M124 212h26M124 254h26" class="dash march faint" />
+        <!-- Cheap pass narrows N to top K -->
+        <path d="M152 62L248 146v48L152 278z" class="faint" />
+        <path d="M248 170h38" class="dash march faint" />
+        <!-- The shortlist the strong model is allowed to see -->
+        <g class="faint">
+          <rect x="286" y="132" width="82" height="18" rx="3" />
+          <rect x="286" y="160" width="82" height="18" rx="3" />
+          <rect x="286" y="188" width="82" height="18" rx="3" />
+        </g>
+        <path d="M368 170h26" class="dash march faint" />
+        <!-- Strong model evaluating only K -->
+        <rect x="396" y="134" width="72" height="72" rx="14" class="faint" />
+        <circle cx="432" cy="170" r="17" class="ping g1" />
+        <!-- Recall gate: the measurement that made the cascade safe -->
+        <circle cx="432" cy="262" r="15" class="faint" />
+        <path d="M425 262l5 5 9-10" class="check-tick" stroke-width="2" />
       </g>
     )}
 
