@@ -48,9 +48,9 @@
     }
   ],
   "hero": {
-    "eyebrow": "AI Systems Engineer • Agentic AI • Edge/Video AI • ML Infrastructure",
+    "eyebrow": "AI Systems Engineer • Agentic AI • Edge/Video AI • ML Infrastructure • Product Ownership",
     "headline": "I build production-grade AI systems that connect models, infrastructure, and business workflows.",
-    "subheadline": "Machine Learning Engineer focused on agentic AI systems, Video-RAG, real-time edge inference, MLOps, and client-facing AI delivery across safety-critical and enterprise environments.",
+    "subheadline": "Machine Learning Engineer focused on agentic AI systems, Video-RAG, real-time edge inference, and MLOps — and the product manager who took an edge AI mining-safety product from zero to one across safety-critical and enterprise environments.",
     "cta_primary": "View Case Studies",
     "cta_secondary": "Get in Touch",
     "recruiter_pitch": "Open to AI/ML, GenAI, ML Systems, Computer Vision, Edge AI, MLOps, and Applied AI Consulting roles.",
@@ -64,10 +64,38 @@
     ]
   },
   "about": {
-    "short": "I am a Machine Learning Engineer with a University of Toronto MScAC background, building production AI systems across edge devices, cloud infrastructure, multimodal retrieval, and agentic workflows.",
-    "full": "I work at the intersection of machine learning, systems engineering, and product delivery. My recent work includes real-time agentic AI systems on NVIDIA Jetson AGX, Video-RAG pipelines for live video streams, GPU-optimized inference with ONNX/TensorRT/CUDA/GStreamer, and MLOps workflows using MLflow, Docker, AWS, Git, and CI/CD. I care about systems that are reliable, measurable, maintainable, and useful to real teams—not just prototypes."
+    "short": "I am a Machine Learning Engineer with a University of Toronto MScAC background, building production AI systems across edge devices, cloud infrastructure, multimodal retrieval, and agentic workflows — and owning products end to end, from client discovery through market entry.",
+    "full": "I work at the intersection of machine learning, systems engineering, and product ownership. My recent work includes real-time agentic AI systems on NVIDIA Jetson AGX, Video-RAG pipelines for live video streams, GPU-optimized inference with ONNX/TensorRT/CUDA/GStreamer, and MLOps workflows using MLflow, Docker, AWS, Git, and CI/CD. Alongside the engineering, I took BeltIQ — an edge AI mining-safety product — from zero to one as its product manager, owning discovery, roadmap, vendor procurement, and market-entry strategy. I care about systems that are reliable, measurable, maintainable, and useful to real teams—not just prototypes."
   },
   "experience": [
+    {
+      "company": "JSquared Technologies",
+      "role": "Product Manager, BeltIQ",
+      "dates": "Jan 2025 – Present",
+      "theme": "Zero-to-one product ownership for an edge AI mining-safety product",
+      "summary": "Took BeltIQ from concept to a deployed product — owning discovery, roadmap, market-entry strategy, vendor procurement, and delivery across engineering, hardware, and client stakeholders.",
+      "highlights": [
+        "Built BeltIQ from zero to one, defining the product thesis, the initial feature set, and the market-entry strategy for an edge AI mining-safety product in a market with no incumbent equivalent.",
+        "Ran client requirements gathering directly with site operators and decision-makers, converting operational pain points and safety obligations into a prioritized specification engineering could build against.",
+        "Decomposed an open-ended safety-monitoring problem into iterable delivery chunks, then laid out the technical roadmap and execution plan so every increment shipped something demonstrable rather than deferring value to a single launch.",
+        "Prepared and delivered the sales pitch deck and product narrative used in client and executive conversations, translating edge AI capability into operational and commercial outcomes buyers could evaluate.",
+        "Owned vendor management and procurement for edge compute, cameras, and site-installation hardware, sequencing purchasing against hardware lead times so deployment dates held.",
+        "Drove feature planning and cross-team execution across ML, software, hardware, and field-deployment teams, maintaining a single roadmap all four worked from.",
+        "Acted as the communication layer between client stakeholders and engineering — surfacing tradeoffs, scope changes, and deployment expectations early enough to be decisions rather than escalations."
+      ],
+      "tags": [
+        "Product Strategy",
+        "Zero-to-One",
+        "Roadmapping",
+        "Requirements Gathering",
+        "Go-to-Market",
+        "Vendor Management",
+        "Procurement",
+        "Stakeholder Management",
+        "Cross-Functional Leadership",
+        "Feature Planning"
+      ]
+    },
     {
       "company": "JSquared Technologies",
       "role": "Machine Learning Research Engineer",
@@ -146,7 +174,8 @@
     "dcs_edge_file_sync",
     "visitor_log_platform",
     "coordination_substrate_program",
-    "llm_eval_cost_optimization"
+    "llm_eval_cost_optimization",
+    "beltiq_zero_to_one"
   ],
   "skills": {
     "ai_ml_genai": [
@@ -229,6 +258,20 @@
       "Technical Documentation",
       "Executive Communication",
       "Cross-Functional Execution"
+    ],
+    "product_management": [
+      "Product Strategy",
+      "Zero-to-One Product Development",
+      "Market-Entry Strategy",
+      "Product Roadmapping",
+      "Feature Planning",
+      "Prioritization & Scoping",
+      "Client Discovery",
+      "Sales Enablement",
+      "Pitch Deck Development",
+      "Vendor Management",
+      "Hardware Procurement",
+      "Delivery Sequencing"
     ]
   },
   "education": [
