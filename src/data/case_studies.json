@@ -369,10 +369,10 @@
   },
   {
     "id": "beltiq_zero_to_one",
-    "title": "BeltIQ: Taking a Safety Product From Zero to One",
+    "title": "BeltIQ",
     "category": "Product Management + Zero-to-One Delivery",
-    "priority": 10,
-    "homepage_featured": false,
+    "priority": 0,
+    "homepage_featured": true,
     "one_liner": "Owned BeltIQ as product manager, from an observation on a site walk to a product running in production, which meant turning an open-ended safety problem into a sequenced roadmap, a hardware supply chain, and a story a buyer could actually evaluate.",
     "problem": "\"Make the belt safer\" is a mandate, not a specification. Failures are expensive and dangerous, but the operators living with them described symptoms rather than requirements: a spill nobody caught, a misalignment found on the next walk-around. There was no product to sell yet, no reference deployment to point at, and no obvious first slice, since the work could plausibly have started at any of a dozen failure modes and each one implied different cameras, different mounting, different compute, and a different conversation with the buyer. On top of that the work spanned ML, software, hardware, and field deployment teams with no shared plan between them, and the hardware those teams depended on had lead times measured in weeks, which is long enough that a scoping mistake made in month one does not show up as a schedule problem until month three.",
     "solution": "Started with discovery rather than architecture. Sat with operators and the people who sign off on purchases to separate what actually hurt from what was merely irritating, and used that to pick a first failure mode narrow enough to build against and serious enough to justify someone paying for it. Broke the work into thin vertical slices, each one a working path from camera through to something an operator sees, rather than horizontal layers, so every increment produced something a client could watch running on their own site instead of deferring all the value to one launch. Laid those slices onto a technical roadmap with an explicit execution plan, then ran hardware selection and procurement against that sequence so lead times were absorbed by the plan rather than discovered by it. Built the pitch deck and product narrative in parallel with the build, which forced the positioning and market-entry decisions to happen while they could still change what got built.",
