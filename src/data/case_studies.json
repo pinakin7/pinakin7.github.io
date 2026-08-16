@@ -1,421 +1,395 @@
 [
   {
     "id": "production_edge_agentic_ai",
-    "title": "Production Edge Agentic AI for Mining Safety",
-    "category": "Agentic AI + Edge AI + Computer Vision",
+    "title": "Real-Time Video Intelligence on Edge Devices",
+    "category": "Edge AI + Multimodal Retrieval + Agentic Systems",
     "priority": 1,
     "homepage_featured": true,
-    "one_liner": "Designed real-time on-device agentic AI systems for safety-critical video analytics on NVIDIA Jetson AGX.",
-    "problem": "Mining and industrial environments require continuous safety monitoring, but manual monitoring is expensive, slow, and error-prone.",
-    "solution": "Built multimodal edge AI pipelines combining perception, reasoning, and action loops for real-time video analytics under strict latency, compute, power, and reliability constraints.",
+    "one_liner": "Built an on-device system that watches live video in real time and also lets people search and ask questions across everything it has already seen, with both halves running on embedded hardware instead of in the cloud.",
+    "problem": "Continuous video monitoring does not scale with people. Someone has to watch the feed, attention degrades long before the shift ends, and the events that matter usually get found afterwards rather than as they happen. Pushing everything to the cloud does not solve it either: the bandwidth is not always there, the latency is too high for anything that has to act on what it sees, and in plenty of deployments the footage is not permitted to leave the site at all. So whatever runs has to run locally, on hardware with a fixed power and thermal budget, unattended, for a long time. And once a system has been watching for a few weeks, the recording becomes its own problem, because nobody is going to scrub through days of footage to find the one moment they need.",
+    "solution": "Built one system that covers both halves. A real-time path runs perception on the live stream on the device, decides what is worth acting on, and acts, all inside the frame budget. A retrieval path turns what the system has already seen into something searchable, so a person can ask an ordinary question and get back the moments that answer it with the supporting footage attached rather than a bare claim. Both paths work off the same on-device representation of the video, which is what makes it affordable to run them together on embedded hardware instead of standing up a separate indexing tier.",
     "impact": [
-      "45% reduction in manual monitoring",
-      "30 FPS real-time video analytics",
-      "Improved safety monitoring reliability"
+      "45% reduction in manual monitoring effort",
+      "30 FPS sustained real-time analytics on embedded hardware",
+      "Sub-second search across weeks of recorded video",
+      "Answers grounded in retrieved footage rather than model assertion"
     ],
     "technical_details": [
-      "NVIDIA Jetson AGX deployment",
-      "Computer vision pipelines for hazard detection and workflow automation",
-      "Autonomous perception-decision-action loop",
-      "Edge-aware optimization for latency, memory, and throughput",
-      "Client-facing delivery with stakeholder demos and implementation roadmaps"
+      "Perception, decision, and action run as a single loop on the device, sized so the whole cycle fits inside the real-time frame budget instead of quietly degrading to best-effort under load",
+      "Models are compiled and quantized for the target accelerator before deployment, and the video path uses hardware decode so GPU time goes to inference rather than to unpacking frames",
+      "What the system has seen is kept as a compact representation rather than as raw footage, which is what keeps weeks of history searchable on a device with a fixed storage and memory budget",
+      "Search runs in two stages, a fast pass to narrow the field and a slower one to rank what survives, so query latency stays roughly flat as the history grows",
+      "Language model reasoning sits on top of retrieval rather than replacing it, so every answer points back at the footage it came from and a person can check it",
+      "Built to run unattended. It recovers from stream drops, restarts, and power loss on its own, because there is nobody on site to restart it"
     ],
     "skills": [
-      "Agentic AI",
+      "Edge AI",
       "Computer Vision",
+      "Agentic AI",
+      "Multimodal Retrieval",
+      "RAG",
+      "LLMs",
       "NVIDIA Jetson",
       "TensorRT",
-      "CUDA",
-      "Edge AI",
-      "MLOps",
-      "Stakeholder Delivery"
-    ],
-    "suggested_visuals": [
-      "System architecture diagram",
-      "Pipeline flow: video stream → perception → reasoning → action",
-      "Before/after metrics cards"
-    ],
-    "recruiter_angle": "Shows rare combination of agentic AI, computer vision, edge deployment, and production constraints."
-  },
-  {
-    "id": "video_rag_continuous_video_search",
-    "title": "Video-RAG for Continuous Video Search",
-    "category": "Multimodal RAG + LLM Systems",
-    "priority": 2,
-    "homepage_featured": true,
-    "one_liner": "Architected retrieval-oriented video understanding pipelines for natural-language search over live and long-horizon video streams.",
-    "problem": "Long video streams are difficult to search, reason over, and summarize using traditional indexing approaches.",
-    "solution": "Built a Video-RAG pipeline using compressed spatio-temporal embeddings, CLIP/VLM-derived representations, semantic text embeddings, multimodal indexing, and LLM reasoning.",
-    "impact": [
-      "Sub-second search latency over multi-day indexed video",
-      "Contextual querying and decision support over live video streams",
-      "Improved explainability through retrieval-backed reasoning"
-    ],
-    "technical_details": [
-      "Compressed spatio-temporal embeddings",
-      "Multimodal segment construction",
-      "Bi-encoder candidate generation",
-      "Cross-encoder refinement",
-      "Confidence-weighted multimodal fusion",
-      "LLM-driven contextual reasoning",
-      "TensorRT / FP16 optimization on Jetson AGX Orin"
-    ],
-    "skills": [
-      "Video-RAG",
-      "Multimodal Retrieval",
-      "CLIP",
-      "VLMs",
-      "LLMs",
-      "TensorRT",
-      "Jetson AGX Orin",
+      "Real-Time Inference",
       "Vector Search"
     ],
     "suggested_visuals": [
-      "Retrieval architecture",
-      "Search demo screenshots",
-      "Ranking/fusion diagram"
+      "The two paths side by side: live perception loop and retrieval over history",
+      "Where the frame budget goes across decode, inference, and decision",
+      "Query to answer: narrow, rank, then reason over what came back",
+      "What stays on the device and what never leaves it"
     ],
-    "recruiter_angle": "Strong differentiator for GenAI, RAG, multimodal AI, and applied research roles."
+    "recruiter_angle": "Covers two things that are usually separate hires: real-time computer vision under hard latency and power limits, and multimodal retrieval with language model reasoning on top. Both shipped on the same embedded hardware, in production, not as a demo."
   },
   {
     "id": "enterprise_ai_sprint_planning",
-    "title": "Enterprise AI for Sprint Planning and Resource Allocation",
+    "title": "Agentic Planning Support for Product and Engineering Teams",
     "category": "Agentic AI + Enterprise Workflow Automation",
-    "priority": 3,
+    "priority": 2,
     "homepage_featured": true,
-    "one_liner": "Developed an agentic planning workflow to support prioritization, sequencing, trade-off analysis, and resource allocation.",
-    "problem": "Product, engineering, and operations teams need better visibility into dependencies, constraints, and competing priorities during planning.",
-    "solution": "Formalized product definitions, feature requirements, sprint goals, and workflow logic into structured context for AI-assisted decision support.",
+    "one_liner": "Built an agentic workflow that surfaces the dependencies, trade-offs, and resourcing conflicts that normally only show up once a sprint is already underway.",
+    "problem": "Planning usually breaks down not because a team lacks information but because the information is scattered. Product definitions live in one place, feature requirements in another, and the constraints that actually decide sequencing sit in people's heads: who is available, what blocks what, and what committing to one thing costs somewhere else. The result is a plan that looks reasonable in the room and starts falling apart in week two, at which point the reasoning behind it is gone and nobody can reconstruct why the order made sense.",
+    "solution": "Wrote the product definitions, feature requirements, sprint goals, and the logic connecting them into structured context an agent could actually reason over, then built a workflow that uses it to surface dependencies, flag conflicts, and lay out the trade-off behind a sequencing decision. It is deliberately decision support and not decision making. The system makes constraints visible and argues for an ordering, and the team still decides. That boundary was the design, not a limitation, because a planning tool that quietly overrules people gets abandoned quickly.",
     "impact": [
-      "Improved visibility into dependencies and constraints",
-      "Supported AI-assisted prioritization and sequencing",
-      "Framed as a human-AI collaboration system for workflow redesign"
+      "Dependencies and constraints made visible before commitment rather than after",
+      "Trade-offs surfaced as explicit options instead of implicit assumptions",
+      "Planning context captured once and reused each cycle",
+      "Human sign-off kept as a required step in the workflow"
     ],
     "technical_details": [
-      "Agentic planning workflow",
-      "Structured Notion-based context",
-      "Feature and sprint-goal reasoning",
-      "Trade-off surfacing",
-      "Resource allocation support",
-      "Research framing around organizational AI adoption"
+      "Planning knowledge is written down as structured context rather than prose, so the agent reasons over the actual relationships between goals, features, and constraints instead of over a summary of them",
+      "Dependency and conflict detection runs against that structure, which is what lets it catch the second-order case where two individually reasonable commitments collide on the same person",
+      "Trade-offs are presented as options with their consequences attached, so the output is something a team can argue with rather than a recommendation to accept or ignore",
+      "The context is maintained as a living artifact, so each planning cycle starts from what the previous one learned instead of from a blank page",
+      "Scope was held to what the system can support with evidence, because the fastest way to lose a planning team's trust is to be confidently wrong about a constraint they know better than you do"
     ],
     "skills": [
       "Agentic AI",
       "Enterprise AI",
       "Workflow Automation",
       "Human-AI Collaboration",
-      "Product Ops",
-      "Decision Support"
+      "Decision Support",
+      "Product Operations"
     ],
     "suggested_visuals": [
-      "Planning workflow diagram",
-      "Example sprint prioritization matrix",
-      "Human-in-the-loop decision flow"
+      "Planning context structure: goals, features, constraints, and how they connect",
+      "Dependency conflict surfacing, including second-order collisions",
+      "Trade-off presentation: options with consequences attached",
+      "Where the human decides and where the system only advises"
     ],
-    "recruiter_angle": "Best case study for AI consulting, strategy, forward-deployed AI, and product-facing AI roles."
+    "recruiter_angle": "Relevant to applied AI consulting, forward-deployed, and product-facing AI roles. The interesting decision here was not the model, it was working out what the system should be allowed to decide."
   },
   {
     "id": "inference_optimization_mlops",
-    "title": "High-Performance Inference and MLOps for Real-Time AI",
+    "title": "High-Performance Inference and Deployment for Real-Time AI",
     "category": "ML Systems + Inference Optimization",
-    "priority": 4,
+    "priority": 3,
     "homepage_featured": true,
-    "one_liner": "Built GPU-accelerated inference and deployment pipelines that improved throughput, latency, reproducibility, and validation.",
-    "problem": "Production AI workloads need predictable latency, efficient memory usage, reproducible deployment, and continuous validation.",
-    "solution": "Engineered real-time and batch inference pipelines using ONNX, TensorRT, CUDA, GStreamer, MLflow, Docker, AWS, CI/CD, and edge-device runners.",
+    "one_liner": "Rebuilt the inference and deployment path for real-time AI workloads so latency became predictable, deployments became repeatable, and regressions got caught before they reached a device.",
+    "problem": "Real-time AI workloads fail differently from batch ones. Average latency can look perfectly healthy while the tail quietly breaks the product, memory creeps until something falls over days into a run, and a model that tested well behaves differently once it is running against live input on the actual hardware. Deployment made it worse. Builds were hard to reproduce, so it was never entirely clear which version of what was running where, which meant a performance regression could not reliably be traced back to the change that caused it.",
+    "solution": "Reworked the pipeline end to end. Models are compiled and quantized for the target hardware ahead of time rather than served through a general-purpose runtime. The video path moved onto hardware-accelerated decode and encode so the GPU spends its time on inference instead of moving frames around. Deployments were made reproducible and versioned, and validation runs against real hardware rather than a stand-in, so thermal and power behaviour shows up before a device in the field does something surprising.",
     "impact": [
-      "2x throughput improvement",
+      "2x inference throughput improvement",
       "60% latency reduction",
-      "50% IPC latency reduction",
-      "30% faster deployments"
+      "50% reduction in inter-process latency",
+      "30% faster deployment turnaround"
     ],
     "technical_details": [
-      "TensorRT and ONNX runtime optimization",
-      "CUDA-aware scheduling",
-      "GStreamer pipelines with GPU-accelerated decode/encode",
-      "MLflow deployment tracking",
-      "Dockerized CI/CD workflows",
-      "Hardware-in-the-loop validation"
+      "Models compiled and quantized for the target accelerator instead of served through a general-purpose runtime, which is where most of the throughput came from",
+      "Hardware-accelerated decode and encode on the video path, so GPU time goes to inference rather than frame handling",
+      "Batching and scheduling tuned against tail latency rather than average, because a real-time system is judged on its worst frames and nobody notices a good average",
+      "Inter-process communication reworked to stop copying large frames between stages, removing a cost that scaled with resolution and got worse exactly as cameras got better",
+      "Deployments versioned and reproducible, so whatever is running on a device traces back to a known build",
+      "Validation runs against real hardware in the loop, since behaviour under thermal and power limits does not reproduce on a workstation"
     ],
     "skills": [
       "TensorRT",
       "ONNX",
       "CUDA",
       "GStreamer",
-      "MLflow",
+      "Model Quantization",
+      "Latency Optimization",
+      "MLOps",
       "Docker",
-      "AWS",
-      "CI/CD",
-      "MLOps"
+      "CI/CD"
     ],
     "suggested_visuals": [
-      "Latency before/after chart",
-      "Deployment pipeline diagram",
-      "Edge-to-cloud architecture"
+      "Latency distribution before and after, with the tail called out",
+      "Where GPU time goes across decode, inference, and encode",
+      "Build to device, with the validation gate in the path",
+      "Throughput against resolution, before and after the copy was removed"
     ],
-    "recruiter_angle": "Targets ML systems, infra, edge AI, and performance engineering recruiters."
+    "recruiter_angle": "Aimed at ML systems, inference, and performance engineering teams. The work is about tail latency and reproducibility, which is what actually breaks real-time AI once it leaves the lab."
   },
   {
     "id": "real_time_defect_detection",
-    "title": "Real-Time Infrastructure Defect Detection",
+    "title": "Real-Time Defect Detection for Infrastructure Inspection",
     "category": "Computer Vision + Applied ML",
-    "priority": 5,
-    "homepage_featured": false,
-    "one_liner": "Built real-time anomaly detection and inspection systems integrating live drone feeds, ML predictions, and analytics dashboards.",
-    "problem": "Infrastructure inspection workflows are slow and costly when dependent on manual review.",
-    "solution": "Developed ensemble ML models and real-time analytics pipelines for structural defect classification.",
+    "priority": 4,
+    "homepage_featured": true,
+    "one_liner": "Built an inspection system that classifies structural defects from live survey video, so findings arrive while the crew is still on site instead of weeks later in a report.",
+    "problem": "Infrastructure inspection produces far more footage than anyone can review. A survey generates hours of video, a specialist reviews it afterwards, and the finding that mattered gets confirmed long after the crew has packed up and left. Review is also inconsistent, because two reviewers looking at marginal footage do not always agree and there is no cheap way to check which of them was right.",
+    "solution": "Built a detection pipeline that runs against the live feed during the survey rather than against the archive afterwards. Predictions are surfaced next to the footage in an analytics view, so an operator can confirm or dismiss a finding while still on site and while re-inspecting is still cheap. The reporting that used to be assembled by hand afterwards is generated from the same record the operator worked against.",
     "impact": [
-      "90% accuracy",
+      "90% classification accuracy",
       "4x faster processing",
       "30% lower inspection costs",
       "25% faster stakeholder decision-making"
     ],
     "technical_details": [
-      "Knowledge distillation",
-      "Ensemble ML",
-      "Live video feed integration",
-      "Analytics dashboards",
-      "Report automation"
+      "Several models combined rather than relying on one classifier, because the defect classes fail in different ways and no single model was reliably best across all of them",
+      "A larger model's behaviour distilled into a smaller one so it could keep up with a live feed instead of running offline afterwards",
+      "Predictions surfaced next to the footage they came from, so an operator confirms or dismisses a finding rather than being asked to trust a score",
+      "Reporting generated from the record the operator already worked against, which removed a manual transcription step and the errors that came with it",
+      "Model output translated into the terms the client actually made decisions in, rather than reported as accuracy figures nobody could act on"
     ],
     "skills": [
-      "Anomaly Detection",
       "Computer Vision",
-      "XGBoost",
-      "LightGBM",
-      "Dashboards",
-      "Real-Time ML"
+      "Anomaly Detection",
+      "Ensemble Methods",
+      "Knowledge Distillation",
+      "Real-Time ML",
+      "Analytics Dashboards"
     ],
     "suggested_visuals": [
-      "Detection pipeline",
-      "Dashboard mockup",
-      "Accuracy/latency metrics"
+      "Detection pipeline from live feed to operator confirmation",
+      "Where the ensemble disagrees, and what happens then",
+      "Operator view: prediction alongside the footage it came from",
+      "Accuracy and latency, before and after"
     ],
-    "recruiter_angle": "Proves applied ML product delivery before JSquared."
+    "recruiter_angle": "Applied ML delivered as a working product rather than as a model. Good evidence of getting computer vision into a workflow that people use under field conditions."
   },
   {
     "id": "llm_pr_review_assistant",
     "title": "LLM-Based Pull Request Review Assistant",
     "category": "LLM Automation + Developer Productivity",
-    "priority": 6,
+    "priority": 5,
     "homepage_featured": false,
-    "one_liner": "Built an LLM-based pull request review system to automate code analysis and improve engineering efficiency.",
-    "problem": "Code review can be slow, inconsistent, and difficult to scale across fast-moving AI development teams.",
-    "solution": "Implemented an LLM-driven review workflow to analyze PRs, surface issues, and support engineering quality.",
+    "one_liner": "Built a review assistant that reads pull requests and leaves the comments a careful reviewer would leave, so the mechanical problems get caught before a person spends attention on them.",
+    "problem": "Code review is the bottleneck nobody wants to name. Reviews queue behind whoever holds the context, quality varies with how much the reviewer has already read that day, and a large share of comments are things a careful reader catches mechanically. The valuable part of review, which is the judgment about whether the change is the right change at all, gets crowded out by the part that does not need judgment.",
+    "solution": "Built a workflow that pulls the change along with enough surrounding context to reason about it, then posts findings inline where a reviewer is already looking. The scope is deliberately narrow. It handles the mechanical layer and stays out of design judgment, because a tool that argues confidently about architecture gets muted within a week and then nobody gets the mechanical findings either.",
     "impact": [
-      "Improved engineering efficiency",
-      "Supported faster applied AI development workflows"
+      "Mechanical review findings surfaced before human review begins",
+      "Review feedback made consistent regardless of reviewer load",
+      "Human attention redirected toward design judgment",
+      "Findings delivered inline, in the tool reviewers already use"
     ],
     "technical_details": [
-      "LLM prompt workflow",
-      "Repository/PR context parsing",
-      "Automated review comments",
-      "Developer workflow integration"
+      "The change is read with its surrounding context rather than as a bare diff, since a diff on its own cannot tell you whether a removed check was moved or lost",
+      "Findings post inline at the relevant line, because review that arrives as a separate report does not get read",
+      "Scope limited to what can be argued concretely, so the assistant does not spend its credibility on opinions",
+      "Tuned toward precision over coverage, because a reviewer who hits three false findings in a row stops reading the fourth",
+      "Runs inside the existing review workflow rather than asking developers to go somewhere new to get it"
     ],
     "skills": [
       "LLMs",
-      "Developer Tools",
-      "Automation",
-      "GitHub",
-      "Prompt Engineering"
+      "Prompt Engineering",
+      "Developer Tooling",
+      "Workflow Automation",
+      "Code Review",
+      "Python"
     ],
     "suggested_visuals": [
-      "PR review flow",
-      "Example review output",
-      "Developer productivity diagram"
+      "Where the assistant sits in the existing review flow",
+      "Example finding, inline at the line it refers to",
+      "The precision and coverage trade-off, and where it was set",
+      "What the assistant is scoped out of, and why"
     ],
-    "recruiter_angle": "Good supporting project for AI software engineer and internal tools roles."
+    "recruiter_angle": "Practical LLM application work. The engineering is straightforward, and the hard part is calibrating scope and precision so the tool survives contact with a real team."
   },
   {
-    "id": "dcs_edge_file_sync",
-    "title": "FalcHub — Edge-to-Cloud File Sync Sidecar",
-    "category": "Edge Systems + Cloud Security + Python",
-    "priority": 7,
+    "id": "edge_cloud_file_sync",
+    "title": "Edge to Cloud Sync for Unattended Field Devices",
+    "category": "Edge Systems + Distributed Reliability + Python",
+    "priority": 6,
     "homepage_featured": false,
-    "one_liner": "Designed and built FalcHub, a production edge sidecar (Python) that reliably syncs GB-scale daily file volume from field devices to AWS S3 over unreliable networks — using a concurrent multi-process pipeline, certificate-based IoT auth, and crash-safe atomic state.",
-    "problem": "Unattended edge devices in industrial environments produce GB-scale file volume every day and must upload it to the cloud continuously for months — over decent-but-unreliable LAN/WiFi links that drop frequently — surviving crashes, power loss, and outages without ever losing or double-uploading data, and without storing any static cloud credentials on the device.",
-    "solution": "Built a fork-based supervisor process that isolates three worker processes (file discovery, upload, and cleanup) communicating only through a shared SQLite ledger with atomic, crash-safe state transitions. High per-device file volume is absorbed by a concurrent pipeline that keeps scanning, uploading, and retention from blocking each other; files upload to AWS S3 using short-lived credentials obtained via AWS IoT X.509 certificate authentication, are confirmed with a backend API, and are deleted only after a retention-gated, confirmed sync.",
+    "one_liner": "Designed and built the service that moves data off unattended field devices and into the cloud reliably, over networks that drop constantly, without ever losing a file or uploading one twice.",
+    "problem": "Devices deployed in the field generate a large volume of data every day and have to get it to the cloud continuously, for months, with nobody on site. The network is the first problem, because links drop often enough that any design assuming a stable connection fails within a day. The second is that the device itself will crash, lose power, and restart, and every one of those events happens partway through something. The third is credentials. A device sitting in a shed cannot hold long-lived cloud keys, because physical access to that device would then mean access to the cloud account.",
+    "solution": "Built the service as a set of isolated worker processes that share no memory, only a durable local record of what has happened to each file. Because every state change is written down before it is acted on, a crash at any point leaves the system in a state it can reason about when it comes back, rather than one it has to guess at. The device holds no permanent cloud credentials. It proves its identity with a hardware-held certificate and receives short-lived credentials that expire on their own. A file is deleted locally only after the cloud side has independently confirmed it arrived and a retention window has passed.",
     "impact": [
-      "GB-scale files synced per device, every day",
-      "3 isolated worker processes for concurrent, non-blocking throughput",
-      "Zero data loss across crashes and unreliable-network drops",
-      "0 static AWS keys — short-lived IoT credentials only"
+      "Zero data loss across crashes, power loss, and network drops",
+      "No duplicate uploads under concurrent processing",
+      "No long-lived cloud credentials stored on any device",
+      "Months of unattended operation without intervention"
     ],
     "technical_details": [
-      "Concurrency via process isolation: independent Walker/Uploader/Cleaner workers so high per-device file volume never blocks scanning, upload, or retention — sustaining throughput on constrained edge hardware",
-      "Resilient to unreliable LAN/WiFi: bounded retries with a transport-vs-permanent failure classifier and a watchdog that reclaims stalled uploads, so files still reach S3 despite frequent link drops",
-      "Efficient at scale: an atomic compare-and-swap claim ensures workers never contend or re-upload a file, and per-process credential caching avoids repeated STS round-trips",
-      "Fork-safe supervisor (SystemOrchestrator) with restart-storm throttling and a staged shutdown ladder for months of unattended operation",
-      "Zero-ambient-credentials model: every S3 client requires explicit IoT-issued temporary credentials via an X.509 → role-alias → STS exchange",
-      "Two-stage Docker build compiling a patched SQLite (SHA3-256 pinned) to fix a WAL-checkpoint bug, enforced by a boot-time and build-time safety gate; Jenkins CI/CD with cosign signing + SPDX SBOM attestation to Harbor/ECR"
+      "Work is split across isolated processes so a slow or stuck stage cannot block the others, which is what keeps throughput steady when the network degrades instead of stalling everything behind one retry",
+      "Every state change is written durably before the action it describes, so recovering from a crash is a matter of reading the record rather than inspecting the filesystem and guessing",
+      "Claiming a file for upload is atomic, so two processes racing on the same file resolve without coordinating and without uploading it twice",
+      "A stalled transfer is reclaimed after a timeout rather than waited on forever, because the common failure here is a link that goes quiet, not one that returns an error",
+      "Retries distinguish between failures worth retrying and failures that will never succeed, so one permanently bad file does not consume the retry budget indefinitely",
+      "Local deletion is gated on independent confirmation from the cloud plus a retention window, so the device is never the only remaining copy at the moment it deletes",
+      "Credentials are short-lived, issued against a hardware-held certificate, and never written to disk in a form anyone could reuse"
     ],
     "skills": [
       "Python",
-      "AWS S3",
-      "AWS IoT Core",
+      "Distributed Systems",
       "Multiprocessing",
-      "SQLite / SQLAlchemy",
+      "Crash-Safe State Machines",
+      "Cloud Storage",
+      "Certificate-Based Authentication",
       "Docker",
-      "Jenkins CI/CD",
-      "Supply-Chain Security",
-      "cosign / SBOM"
+      "CI/CD"
     ],
     "suggested_visuals": [
-      "Fork-based supervisor + 3-worker process diagram",
-      "File lifecycle state machine (pending → uploading → synced/failed)",
-      "Zero-credential IoT → STS credential exchange flow",
-      "CI/CD supply-chain pipeline (sign + SBOM + promote)"
+      "File lifecycle: discovered, claimed, uploaded, confirmed, retained, deleted",
+      "What survives a crash at each point in that lifecycle",
+      "Credential flow: device certificate to short-lived access, nothing persistent",
+      "Behaviour on a dropping link: retry, reclaim, and what never blocks"
     ],
-    "recruiter_angle": "Demonstrates high-volume, constrained-network edge throughput plus production security and supply-chain depth — concurrent crash-safe process design and end-to-end signed/attested delivery, owned solo."
+    "recruiter_angle": "Reliability engineering where the failure modes are physical: no operator, no stable network, and a device that will lose power mid-write. Owned end to end, from the state machine through to the deployment pipeline."
   },
   {
     "id": "visitor_log_platform",
-    "title": "VisitorLog — Multi-Site Visitor Management Platform",
+    "title": "Multi-Site Visitor Management Platform",
     "category": "Full-Stack + Zero-Trust Security + Platform",
-    "priority": 8,
+    "priority": 7,
     "homepage_featured": false,
-    "one_liner": "Architected and built VisitorLog end to end — a multi-site platform serving many kiosks and concurrent approvers with low-latency check-in, signed QR badge credentials, and an efficient, horizontally scalable zero-trust FastAPI + Next.js + PostgreSQL stack.",
-    "problem": "A multi-site organization needed to replace manual, ad-hoc visitor tracking with a governed workflow that serves many kiosks and tens of concurrent approvers across sites — routing each of hundreds of daily visits through the correct security approval based on classification, protecting sensitive PII, and producing a complete, auditable record of every visit and system access, all without sacrificing kiosk responsiveness.",
-    "solution": "Designed a horizontally scalable 3-tier system (Cloudflare Access → Next.js BFF → FastAPI API → PostgreSQL) with a stateless API and pooled database connections to serve concurrent kiosks and approvers efficiently. It routes visit requests to the right approver by security classification, collects and encrypts only the PII each classification requires, and issues signed, site-scoped QR credentials that unattended kiosks verify in-process for sub-second check-in, badge printing, and checkout — all behind zero-trust, per-application edge authentication.",
+    "one_liner": "Architected and built a visitor management platform for a multi-site organization, replacing manual sign-in with a governed approval workflow, fast unattended kiosks, and a complete audit record.",
+    "problem": "Visitor tracking across several sites was manual and inconsistent, which caused two separate problems at once. Operationally, whether a visitor got in depended on finding the right person to approve it, and afterwards nobody could say with confidence who had been where. Legally, the organization was collecting personal information on paper with no control over who could read it and no reliable way to dispose of it. Any replacement had to route each visit to the correct approver based on how sensitive it was, protect the data it collected, and still be fast enough that a visitor standing at a kiosk is not left waiting.",
+    "solution": "Built a three-tier system where the public kiosk surface, the application logic, and the data are separated by trust level rather than only by layer. Visits route to an approver based on classification, and the classification also decides what personal information gets collected in the first place, so the system holds less data instead of merely guarding more of it. Approved visitors receive a credential the kiosk verifies on its own, which is what keeps check-in fast, since the kiosk confirms the credential locally rather than asking a server whether it is still good.",
     "impact": [
-      "73 API endpoints across 17 routers",
-      "Multi-site, many-kiosk deployment",
-      "Sub-second kiosk check-in and QR validation",
-      "193 automated tests running in CI"
+      "Sub-second kiosk check-in and checkout",
+      "Manual sign-in replaced with a governed approval workflow",
+      "Complete auditable record of visits and data access",
+      "Personal data collection scoped to what each classification requires"
     ],
     "technical_details": [
-      "Built for horizontal scale: a stateless FastAPI service with pooled PostgreSQL connections serves many kiosks and tens of concurrent approvers across sites without per-request connection churn",
-      "Low-latency kiosk path: signed QR (VLQ1) credentials are verified cryptographically in-process — no round-trip to a token store — keeping check-in/checkout sub-second under load",
-      "Rate-limited (slowapi) public kiosk surface stays responsive and abuse-resistant while unauthenticated",
-      "Parallel Dockerized CI stages (backend pytest + frontend Vitest/tsc/ESLint) keep the pipeline fast as the codebase grows",
-      "Zero-trust, per-area JWT audience scoping so tokens from one Cloudflare Access surface cannot be replayed on another",
-      "Field-level PII encryption at rest gated by visit classification; 42-model schema carried through 18 zero-downtime Alembic migrations"
+      "The application tier is stateless, so serving more kiosks and more concurrent approvers is a matter of running more instances rather than redesigning anything",
+      "Kiosk credentials are verified cryptographically on the device, which takes a network round trip out of the critical path and is what makes check-in feel instant",
+      "The public kiosk surface is rate limited and treated as untrusted, since by definition it is reachable by people who have not authenticated yet",
+      "Personal information is encrypted at the field level and collected conditionally by classification, so exposure scales with sensitivity rather than with volume",
+      "Tokens are scoped so a credential issued for one surface cannot be replayed against another, which matters most for the surfaces that are physically accessible to anyone walking past",
+      "Every visit and every access to visitor data is recorded, because an audit trail retrofitted later is never complete",
+      "Schema changes ship without downtime, which was a hard requirement given kiosks that are in use during business hours"
     ],
     "skills": [
       "FastAPI",
       "PostgreSQL",
-      "SQLAlchemy / Alembic",
       "Next.js / React",
-      "Cloudflare Access",
-      "Zero-Trust Auth",
-      "Cryptography",
+      "Zero-Trust Architecture",
+      "Applied Cryptography",
+      "Data Privacy",
       "Docker",
-      "Jenkins CI/CD"
+      "CI/CD"
     ],
     "suggested_visuals": [
-      "3-tier architecture: Cloudflare Access → Next.js BFF → FastAPI → PostgreSQL",
-      "Classification-based approval routing flow",
-      "Signed QR credential issuance + kiosk check-in sequence",
-      "Per-area AUD token-scoping diagram"
+      "Three tiers separated by trust level, from public kiosk through to data",
+      "Approval routing by visit classification",
+      "Credential issuance and local kiosk verification",
+      "What each classification collects, and what it deliberately does not"
     ],
-    "recruiter_angle": "Strong end-to-end full-stack case study — a horizontally scalable multi-site platform with low-latency kiosk UX and zero-trust security (signed credentials, encrypted PII, per-area token scoping), architected and shipped solo to v1.0.0."
+    "recruiter_angle": "End-to-end platform work with real security constraints: physically accessible clients, personal data under regulation, and an availability requirement during business hours. Architected and shipped solo."
   },
   {
     "id": "coordination_substrate_program",
-    "title": "Coordination Substrate — One Decision, Three Production Systems",
+    "title": "One Coordination Decision Across Three Production Systems",
     "category": "Distributed Systems + Platform Architecture",
-    "priority": 9,
+    "priority": 8,
     "homepage_featured": false,
-    "one_liner": "Inherited five production systems, three of them pinned to a single worker for the same underlying reason — designed one Postgres-native coordination substrate, applied it across all three, and deliberately did not apply it to the fourth.",
-    "problem": "Three production systems could not run more than one worker, each for what looked locally like a separate reason: in-process singleton daemons (crash recovery, cron scheduling, budget reconciliation) sitting behind a boot guard that actively refused multi-worker startup; an in-memory task queue that lost every in-flight batch on a routine deploy; and a process-local event hub that fanned out only to subscribers connected to that same process. Treated separately they were three scaling projects needing three sets of new infrastructure, and none of the three had a baseline measurement, so none could be changed safely.",
-    "solution": "Audited every piece of in-process state across the systems and classified it five ways — singleton jobs, fan-out, shared ephemeral state, durable work, and benign duplication that needed no coordination at all — which established that one substrate covered the real cases and that several apparent problems needed nothing done to them. Chose Postgres-native primitives over Redis and managed queues because all three systems already ran Postgres and one ships to an on-premise industrial box with no on-site operator, where an additional service is a permanent operational cost rather than a one-time setup. Built leader election, durable queueing, and fan-out on that substrate, proved each independently, then removed the single-worker guards and re-ran the capacity benchmarks unchanged.",
+    "one_liner": "Three production systems could each only run one worker, for what looked like three unrelated reasons. They turned out to be the same problem, so I solved it once and applied it three times, then deliberately left a fourth system alone.",
+    "problem": "Three systems in production could not scale past a single worker process. Locally each looked like its own problem. One had background jobs that would double-run if a second copy started. One held queued work in memory and lost all of it on every deploy. One delivered events only to clients that happened to be connected to the same process that produced them. Treated separately they were three infrastructure projects. None of them had a performance baseline either, so there was no safe way to tell whether any change had actually helped.",
+    "solution": "Audited the state each system held in process and sorted it by what kind of coordination it genuinely needed. That reframing did most of the work, because it showed that one shared mechanism covered the real cases and that several things which looked like problems needed nothing done to them at all. Chose the approach against the hardest deployment reality rather than the textbook answer, since one of these systems ships to a customer site with no operator, where every additional running service becomes a permanent support cost instead of a one-time setup. Built the shared mechanism, proved each capability independently, then removed the single-worker restrictions and re-ran the benchmarks to confirm nothing had regressed.",
     "impact": [
       "3 production systems unpinned from a single worker",
-      "100% in-flight task survival across restart, up from 0%",
-      "10 architecture decision records authored with rejected alternatives",
-      "5 production systems audited and state-classified"
+      "100% in-flight work survival across restarts, up from none",
+      "5 production systems audited and classified",
+      "Architecture decisions recorded alongside their rejected alternatives"
     ],
     "technical_details": [
-      "Leader election on Postgres advisory locks held on a dedicated connection outside the pool — a pooled connection returned to the pool silently releases the lock and lets two workers run the same scheduler, so the holder runs a supervision loop that re-acquires after network blips while non-holders retry on a bounded cadence for predictable failover",
-      "Durable work queue on a jobs table consumed with SELECT … FOR UPDATE SKIP LOCKED so workers never block each other, with attempt-counted exponential backoff persisted in the row rather than in memory, and a reaper that reclaims work from a worker that died mid-task",
-      "Fan-out via LISTEN/NOTIFY on a per-tenant channel, viable specifically because the frontend already treats an event as a cache-invalidation hint rather than as data — so payloads stay a bare identifier and a missed notification degrades to slightly stale data instead of lost data",
-      "A deliberate boundary on the pattern: token-level streaming is high-frequency and stateful, so it uses sticky routing that pins a turn to its executing worker and scales across threads, rather than being forced through a notification channel that is the wrong instrument for it",
-      "Shared ephemeral state resolved by measurement rather than reflex — process-local rate-limit counters meant N workers enforced N times the configured limit, but measured traffic was low enough that a Postgres counter table with periodic cleanup was sufficient, and the metrics registry was deliberately left per-worker and scraped separately since multi-process aggregation modes are more fragile than the standard answer",
-      "Single-worker guards removed only after each mechanism was independently proven, then benchmarks re-run unchanged in the same harness on the same data — including behaviour under worker failure, with failover tested by killing processes rather than mocking them"
+      "Started by classifying in-process state rather than by choosing technology, which is what revealed that three separate scaling projects were one problem wearing three costumes",
+      "The most useful output of that audit was the list of things needing no coordination at all, since duplicated work that is harmless costs less to leave alone than to synchronize",
+      "Infrastructure chosen against the hardest deployment target rather than the easiest, because a dependency that is trivial in a managed environment becomes a permanent liability on a box nobody visits",
+      "Background jobs that must run exactly once are elected to a single owner, with the election supervised so a network interruption produces a predictable handover rather than two owners or none",
+      "Queued work is made durable before it is acknowledged, so a deploy or a crash no longer silently drops whatever happened to be in flight",
+      "One capability was deliberately kept out of the shared mechanism. High-frequency streaming has different characteristics, and forcing it through the same channel would have been using the wrong instrument in order to look consistent",
+      "Shared counters were settled by measuring real traffic rather than by reflex, and the measurement showed the simple answer was sufficient, which avoided standing up infrastructure that would then need maintaining forever",
+      "Restrictions came off only after each mechanism was proven on its own, with failure behaviour tested by actually killing processes rather than by simulating it"
     ],
     "skills": [
-      "PostgreSQL",
       "Distributed Systems",
-      "Leader Election",
-      "Work Queues",
-      "Python",
       "System Architecture",
+      "PostgreSQL",
+      "Concurrency",
       "Benchmarking",
-      "Architecture Decision Records"
+      "Python",
+      "Technical Decision Records"
     ],
     "suggested_visuals": [
-      "In-process state classification: five classes across three systems, including what needed nothing",
-      "Advisory-lock leader election with failover on holder death",
-      "Job lifecycle under SKIP LOCKED: claim → process → terminal, with reaper reclaim",
-      "Substrate decision matrix: Postgres-native vs. Redis vs. managed, against the on-premise constraint"
+      "State classification across the systems, including what needed nothing",
+      "Single-owner election, and what happens when the owner dies",
+      "Work lifecycle: durable before acknowledged, reclaimed on failure",
+      "Where the pattern was deliberately not applied, and the reasoning"
     ],
-    "recruiter_angle": "Senior-level systems judgment rather than feature delivery — one architectural decision amortized across three production systems, an explicit and defended boundary where the pattern did not fit, and changes gated on measurement rather than assumption."
+    "recruiter_angle": "Systems judgment rather than feature delivery. One decision amortized across three systems, an explicit boundary where the pattern did not fit, and every change gated on measurement instead of on confidence."
   },
   {
     "id": "llm_eval_cost_optimization",
-    "title": "Making Two LLM Systems Measurable — Then Cheaper",
+    "title": "Making Two LLM Systems Measurable, Then Cheaper",
     "category": "LLM Systems + Evaluation & Cost Optimization",
-    "priority": 10,
+    "priority": 9,
     "homepage_featured": false,
-    "one_liner": "Two production LLM systems had precise cost observability and no quality observability at all — built evaluation harnesses for both, then used them to gate cost reductions that would otherwise have silently degraded the product.",
-    "problem": "One platform could report exactly what an agent run cost and nothing whatsoever about whether the output was any good, so no prompt or model change could be validated except by inspection. The other ranked candidates using scoring weights that were unmeasured guesses, and its largest available cost saving — cascading so the expensive model only ever sees a shortlist — would have handed the cheap prefilter authority over which candidates the strong model was allowed to see. That is precisely the failure the hybrid design existed to prevent, and nothing in either system could tell you whether shipping it would be free or actively harmful.",
-    "solution": "Split evaluation into two kinds of check that need different treatment: deterministic contract conformance, which has unambiguous answers and can gate CI hard, and rubric-scored quality, which is noisy and gates on a threshold plus human sign-off. Built the ranking evaluation set out of ground truth the organization already had and had never used — its own hiring outcomes, which are a labelled relevance set — and used it to replace guessed scoring weights with measured ones. Only then ran the cost work, with every optimization recording before and after in the same harness and stating the quality tradeoff alongside the saving.",
+    "one_liner": "Two production LLM systems could report exactly what a run cost and nothing at all about whether the output was any good. I built the missing measurement first, then used it to make the cost reductions safe.",
+    "problem": "Both systems had precise cost observability and no quality observability whatsoever, which is worse than having neither, because it makes every cost reduction look free. One could tell you the exact cost of a run but not whether the run had produced anything useful, so no prompt or model change could be validated except by a person reading the output and forming an opinion. The other ranked results using weights that had been guessed at and never checked, and its largest available saving would have handed the cheap stage authority over what the expensive stage was even allowed to consider. Nothing in either system could tell you whether shipping that would be free or actively harmful.",
+    "solution": "Split evaluation into two kinds of check, because they need different treatment. Conformance checks have unambiguous answers and can block a merge outright. Quality checks are noisy, so they gate on a threshold plus a human signing off, since a hard gate on a noisy metric only teaches people to route around the gate. For the ranking system, built the evaluation set out of labelled outcomes the organization already had and had never used for this purpose, which turned guessed weights into measured ones. Only after that did the cost work start, with every optimization recording before and after in the same harness and stating its quality cost next to its saving.",
     "impact": [
-      "2 LLM systems moved from cost-only to quality observability",
-      "5 deterministic contract checks gating every prompt and model-route change",
-      "4 ranking metrics measured against real hiring outcomes",
-      "1 unbounded prompt-growth defect found and bounded"
+      "2 production LLM systems moved from cost-only to quality observability",
+      "Conformance checks gating every prompt and routing change",
+      "Ranking weights replaced with measured values instead of guesses",
+      "An unbounded prompt-growth defect found and fixed"
     ],
     "technical_details": [
-      "Deterministic contract checks — schema validity, tool-call allowlist, secret-access contract, budget cap, and terminal-state reachability — block a merge outright, while quality regression beyond a threshold requires explicit human sign-off instead, because a hard gate on a noisy metric only trains people to bypass the gate",
-      "Ranking evaluation set built from hiring outcomes as a labelled relevance set, deliberately excluding rankings produced before the ranker was replaced — those are invalid, and building on them would have silently invalidated every downstream cost conclusion in a way that stays invisible until much later",
-      "Recall@k chosen as the primary metric over precision, because a screening tool's catastrophic failure is a strong candidate never appearing in the shortlist at all — which nobody ever discovers — whereas an over-ranked mediocre candidate is caught by a human in the interview",
-      "Cascade ranking gated on the measured recall@K of the cheap first pass rather than on the obvious call-count saving, with K set above the operator's shortlist size so the marginal calls buy protection against prefilter error, and a two-tier model cascade held in reserve for the case where lexical recall proved too low to prefilter on safely",
-      "Escalation economics computed explicitly before shipping: with a cheap model at cost c, a strong model at s, and cheap-model success rate p, default-cheap-escalate-on-failure only wins when p > c/s — since a failed cheap call followed by a strong call costs strictly more than the strong call alone",
-      "Found and bounded an unbounded prompt-growth defect: approved data-tier proposals were appended to a living-context store injected into every system prompt, with no size cap and no compaction, so each approval permanently raised cost and latency for every future turn while progressively diluting the instructions that mattered — fixed with a cap plus compaction, and by surfacing context size in the approval interface so the cost is visible to the person creating it",
-      "Prompt prefixes restructured so stable content (system prompts, contract descriptions, skill definitions) precedes the variable portion, which is what makes a prefix eligible for provider-side caching at all — applies to every call with no quality tradeoff"
+      "Conformance checks block a merge while quality regressions require a human to sign off, because a noisy metric behind a hard gate trains people to bypass it rather than to fix the regression",
+      "The evaluation set was built from labelled outcomes that already existed, which is cheaper and more honest than authoring one, provided you exclude the outcomes the old system itself produced",
+      "That exclusion mattered more than it sounds. Building on output from the system you are replacing quietly invalidates every conclusion downstream, and the invalidation stays invisible for a long time",
+      "Chose the metric around the failure nobody notices rather than the one that is easy to measure, since a screening system's real catastrophe is the good result that never surfaces at all",
+      "Cost reductions that route work to a cheaper model were gated on the measured quality of the cheap stage, not on the obvious saving in call volume, because a prefilter that is wrong is invisible in the cost graph",
+      "Worked out the economics of escalating from cheap to expensive before shipping it, since a failed cheap attempt followed by an expensive one costs strictly more than going straight to the expensive one, and it only pays off when the cheap attempt succeeds often enough",
+      "Found a defect where approved content was appended without limit to context injected into every prompt, so each approval permanently raised cost and latency for every future call while diluting the instructions that mattered. Fixed by bounding it and by making the size visible to the person creating it",
+      "Restructured prompts so stable content comes before variable content, which is what makes caching possible at all and costs nothing in quality"
     ],
     "skills": [
       "LLM Evaluation",
       "Information Retrieval",
-      "Recall@K / NDCG",
       "Model Routing",
-      "Prompt Caching",
+      "Prompt Engineering",
       "Cost Optimization",
       "Python",
       "CI/CD",
       "Applied ML"
     ],
     "suggested_visuals": [
-      "Cascade ranking: N candidates → cheap pass → top K → strong model, with the recall@K gate",
-      "Evaluation split: deterministic contract checks (hard CI gate) vs. rubric quality checks (threshold + sign-off)",
-      "Escalation break-even: where p > c/s makes default-cheap actually cheaper",
-      "Living-context growth: unbounded append-only vs. capped with compaction"
+      "Two kinds of check: what blocks a merge, and what needs a human",
+      "Building an evaluation set from outcomes that already exist, and what must be excluded",
+      "Routing work between a cheap and an expensive model, and where it stops paying",
+      "Context growth, bounded against unbounded, and what it costs per call"
     ],
-    "recruiter_angle": "Directly relevant to GenAI and applied-ML roles — builds the quality measurement layer most LLM systems lack, then uses it to make cost decisions with the tradeoff quantified rather than assumed."
+    "recruiter_angle": "Relevant to GenAI and applied ML roles. Builds the quality measurement layer most LLM systems are missing, then uses it to make cost decisions where the trade-off is quantified rather than assumed."
   },
   {
     "id": "beltiq_zero_to_one",
-    "title": "BeltIQ — Taking an Edge AI Safety Product From Zero to One",
+    "title": "BeltIQ: Taking a Safety Product From Zero to One",
     "category": "Product Management + Zero-to-One Delivery",
-    "priority": 11,
+    "priority": 10,
     "homepage_featured": false,
-    "one_liner": "Owned BeltIQ as product manager from a site observation to a deployed product — turning an open-ended safety problem into a sequenced roadmap, a hardware supply chain, and a market-entry story a buyer could evaluate.",
-    "problem": "\"Make the conveyor belt safer\" is a mandate, not a specification. Belt failures at a mine site are expensive and dangerous, but the operators experiencing them described symptoms — a spill nobody caught, a misalignment found on the next walk-around — not requirements. There was no product to sell, no reference deployment to point at, and no obvious first slice: the problem could plausibly start at any of a dozen failure modes, each implying different cameras, different mounting, different compute, and a different buyer conversation. Compounding it, the work spanned ML, software, hardware, and field deployment teams with no shared plan between them, and the hardware those teams depended on had procurement lead times measured in weeks — long enough that a scoping mistake made in month one would not surface as a schedule problem until month three.",
-    "solution": "Started with discovery rather than architecture: sat with site operators and decision-makers to separate what actually hurt from what was merely annoying, and used that to pick a first failure mode narrow enough to build against and severe enough to justify a purchase. Broke the resulting problem into thin vertical slices — each one a working end-to-end path from camera to alert rather than a horizontal layer — so every increment produced something a client could watch running on their own site instead of deferring all value to a single launch. Laid the slices onto a technical roadmap with an explicit execution plan, then ran hardware selection and vendor procurement against that sequence so lead times were absorbed by the plan rather than discovered by it. Built the pitch deck and product narrative in parallel with the build, which forced the positioning and the market-entry strategy to be decided while they could still change what got built, not after.",
+    "one_liner": "Owned BeltIQ as product manager, from an observation on a site walk to a product running in production, which meant turning an open-ended safety problem into a sequenced roadmap, a hardware supply chain, and a story a buyer could actually evaluate.",
+    "problem": "\"Make the belt safer\" is a mandate, not a specification. Failures are expensive and dangerous, but the operators living with them described symptoms rather than requirements: a spill nobody caught, a misalignment found on the next walk-around. There was no product to sell yet, no reference deployment to point at, and no obvious first slice, since the work could plausibly have started at any of a dozen failure modes and each one implied different cameras, different mounting, different compute, and a different conversation with the buyer. On top of that the work spanned ML, software, hardware, and field deployment teams with no shared plan between them, and the hardware those teams depended on had lead times measured in weeks, which is long enough that a scoping mistake made in month one does not show up as a schedule problem until month three.",
+    "solution": "Started with discovery rather than architecture. Sat with operators and the people who sign off on purchases to separate what actually hurt from what was merely irritating, and used that to pick a first failure mode narrow enough to build against and serious enough to justify someone paying for it. Broke the work into thin vertical slices, each one a working path from camera through to something an operator sees, rather than horizontal layers, so every increment produced something a client could watch running on their own site instead of deferring all the value to one launch. Laid those slices onto a technical roadmap with an explicit execution plan, then ran hardware selection and procurement against that sequence so lead times were absorbed by the plan rather than discovered by it. Built the pitch deck and product narrative in parallel with the build, which forced the positioning and market-entry decisions to happen while they could still change what got built.",
     "impact": [
-      "Zero to one — from site observation to a deployed product on a live mine site",
-      "One roadmap shared across ML, software, hardware, and field-deployment teams",
-      "Market-entry strategy and pitch narrative defined before first client demo",
+      "Zero to one, from a site observation to a product running in production",
+      "One roadmap shared across ML, software, hardware, and field teams",
+      "Market-entry strategy and pitch narrative defined before the first client demo",
       "Hardware selection and procurement sequenced against delivery milestones"
     ],
     "technical_details": [
-      "Requirements gathered from operators in the language of their workflow — what they walk past, what they check, what they escalate — then translated into detection targets, latency tolerances, and false-alarm budgets engineering could actually design against; an alert nobody trusts is worse than no alert, so the acceptable false-positive rate was treated as a product requirement rather than a model metric",
-      "Scope decomposed into thin vertical slices rather than horizontal layers, so the first shippable increment ran the full path — camera, on-device inference, alert, operator response — on real site hardware, which surfaced mounting, lighting, network, and power problems while they were still cheap to fix",
-      "Roadmap sequenced so that the longest-lead-time item in each phase started first, with hardware procurement, site-access scheduling, and model development running as parallel tracks with named join points instead of a serial chain where any slip propagated to the whole plan",
-      "Vendor management run as an evaluated selection rather than a purchase order: edge compute, cameras, and installation hardware assessed against the real deployment constraint — an industrial box on a remote site with no on-site operator, where a component failure costs a truck roll — with a second source identified for the parts on the critical path",
-      "Feature planning driven by what changed an operator's decision, not by what was technically interesting: capabilities that produced information nobody would act on were explicitly deferred, and that deferral was written down with its reasoning so it did not get relitigated every planning cycle",
-      "Client and executive communication run on a cadence that surfaced tradeoffs and scope changes while they were still decisions — a shifted date raised in advance with options attached lands as a plan, and the same date raised late lands as an escalation",
-      "Sales pitch deck built around the operational outcome rather than the model architecture, framing edge AI capability in terms a buyer evaluates — incidents caught, manual monitoring hours displaced, and what the system costs to run unattended on their site"
+      "Requirements gathered in the language of the operator's own workflow, meaning what they walk past, what they check, and what they escalate, then translated into detection targets and tolerances engineering could design against. An alert nobody trusts is worse than no alert, so the acceptable false-alarm rate was treated as a product requirement rather than a model metric",
+      "Scope broken into thin vertical slices instead of horizontal layers, so the first shippable increment ran the full path on real site hardware. That surfaced mounting, lighting, network, and power problems while they were still cheap to fix, which is the opposite of what happens when integration is left until the end",
+      "Roadmap sequenced so the longest-lead-time item in each phase started first, with procurement, site access, and model development running as parallel tracks with named join points, rather than as a serial chain where any slip propagates to everything after it",
+      "Vendor selection run as an evaluation rather than a purchase order, assessed against the real deployment constraint of an industrial box on a remote site with no operator, where a component failure costs a truck roll. A second source was identified for anything on the critical path",
+      "Feature planning driven by what changed an operator's decision rather than by what was technically interesting. Capabilities that produced information nobody would act on were deferred explicitly, with the reasoning written down so the same argument did not get relitigated every planning cycle",
+      "Client and executive communication run on a cadence that surfaced trade-offs and scope changes while they were still decisions. A date that shifts, raised early with options attached, lands as a plan; the same date raised late lands as an escalation",
+      "Pitch deck built around the operational outcome rather than the model architecture, framing the capability in the terms a buyer evaluates: incidents caught, monitoring hours displaced, and what the system costs to run unattended"
     ],
     "skills": [
       "Product Strategy",
@@ -432,11 +406,11 @@
       "Sales Enablement"
     ],
     "suggested_visuals": [
-      "Discovery to specification: operator symptoms → failure modes → detection targets with false-alarm budgets",
-      "Thin vertical slices vs. horizontal layers: what each increment put in front of the client",
-      "Roadmap with parallel tracks — procurement, site access, model development — and their join points",
-      "Vendor evaluation matrix against the unattended-remote-site constraint, with critical-path second sourcing"
+      "Discovery to specification: operator symptoms, then failure modes, then detection targets",
+      "Thin vertical slices against horizontal layers, and what each put in front of the client",
+      "Roadmap with parallel tracks for procurement, site access, and model development, and their join points",
+      "Vendor evaluation against the unattended-site constraint, with second sourcing on the critical path"
     ],
-    "recruiter_angle": "Product ownership backed by the ability to build the thing — discovery, roadmap, procurement, and go-to-market for a physical-world AI product, with the engineering judgment to know which slice is actually shippable first. Relevant to AI product management, founding-engineer, and forward-deployed roles where the same person has to talk to the client and scope the build."
+    "recruiter_angle": "Product ownership backed by the ability to build the thing. Discovery, roadmap, procurement, and go-to-market for a physical-world AI product, with enough engineering judgment to know which slice is genuinely shippable first. Relevant to AI product management, founding-engineer, and forward-deployed roles where the same person has to talk to the client and scope the build."
   }
 ]
