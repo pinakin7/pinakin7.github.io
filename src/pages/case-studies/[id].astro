@@ -22,7 +22,7 @@ function splitMetric(point: string): { value: string; label: string } {
 }
 const metrics = study.impact.map(splitMetric);
 // First numeric impact value ("45%", "30 FPS") feeds the animated backdrop.
-// Bare single digits are skipped — "3" alone reads as noise, "45%" reads as impact.
+// Bare single digits are skipped: "3" alone reads as noise, "45%" reads as impact.
 const ghostMetric = metrics.find((m) => m.value.length >= 2)?.value;
 ---
 
